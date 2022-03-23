@@ -178,6 +178,12 @@ Always use camelCase for others.
 - variables
 - functions
 
+# Multiple languages.
+
+- Current locales supported: Korean (ko) and English (en).
+- Default locale: ko
+- Usage guide: https://next-intl-docs.vercel.app/docs/usage/messages.
+
 # ⭐️ Stack
 
 - **Framework:** Next.js

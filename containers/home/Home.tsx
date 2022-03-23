@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+// import { useTranslations } from 'next-intl';
 import 'swiper/css';
 import SwiperCore, { Mousewheel } from 'swiper';
 SwiperCore.use([Mousewheel]);

@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 
+import { NextIntlProvider } from 'next-intl';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
@@ -34,12 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={{ ...theme, colors: { ...theme.colors, ...mode[colorMode] } }}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <NextIntlProvider messages={pageProps.messages}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={{ ...theme, colors: { ...theme.colors, ...mode[colorMode] } }}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </NextIntlProvider>
   );
 }
 
