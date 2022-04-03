@@ -1,1 +1,1 @@
-export const BUDGET = ['5,000만원 이하', '5,000만원 - 1억', '1억 - 2억', '2억 - 3억', '3억 - 4억', '4억 - 5억 이상'];
+export const BUDGET = (t: any) => [t('q6Text1'), t('q6Text2'), t('q6Text3'), t('q6Text4'), t('q6Text5'), t('q6Text6')];

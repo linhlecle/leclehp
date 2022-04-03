@@ -1,8 +1,10 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
 import useMedia from 'hooks/useMedia';
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 
 function History() {
+  const t = useTranslations('AboutUs');
   const { isMobile, isTablet } = useMedia();
   const [isClose, setIsClose] = useState<boolean>(true);
   const onClickMore = () => {
@@ -14,9 +16,7 @@ function History() {
       <Flex flexDir={'column'} pt={['30px', '50px', '60px']} px={['16px', '120px', '100px']} w={'100%'} maxW={['100%', '100%', 'calc(100% - 200px)']}>
         <Flex flexDir={'column'} align={'center'} justify={'center'}>
           <Text textStyle={'xl'} fontWeight={'700'} whiteSpace={'pre-line'} textAlign={'center'} h={'104px'}>
-            {isMobile
-              ? '누구나 쉽게\n디지털 프로덕트를\n제작할 수 있는 환경을\n만들어 갑니다.'
-              : '누구나 쉽게 디지털 프로덕트를\n제작할 수 있는 환경을 만들어 갑니다.'}
+            {isMobile ? t('historyMobile') : t('history')}
           </Text>
           {isClose ? (
             <Box mt={'90px'}>

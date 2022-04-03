@@ -5,8 +5,10 @@ import { useQuery } from 'react-query';
 import SliderItem from './_fragments/SliderItem';
 import api from 'apis/Hr/GET';
 import { dateToUpdated } from 'utils/formatDateToString';
+import { useTranslations } from 'next-intl';
 
 function Section2() {
+  const t = useTranslations('Home');
   const { data } = useQuery<any>(['hr'], api.getHr);
   const lastUpdated = dateToUpdated(data?.[data?.length - 1]?.updated);
   const totalCount = data?.find((hr: any) => hr.category === 'TOTAL').num;
@@ -36,7 +38,7 @@ function Section2() {
               wordBreak={'keep-all'}
               zIndex={1}
             >
-              각 전문가들의 확실한 분업과 조화를 기반으로 높은 완성도와 차별화된 기술력을 보유하고 있습니다.
+              {t('section2Description')}
             </Box>
             <Box textStyle={'md'} color={'gray.700'} fontWeight={'400'} mb={['100px', '55px', '53px']}>
               {`${lastUpdated} 기준`}
@@ -56,9 +58,7 @@ function Section2() {
             <Box textDecor={'underline'} fontFamily={'montserrat'} fontWeight={'600'}>
               LECLE IS
             </Box>
-            <Box mt={['10px', '5px', '5px']}>
-              현재 전체 인원 {totalCount}명+ 중 실제 개발이 가능한 인원 분포가 93.3%라는 타사 대비 월등히 높은 수치로 그 어느 회사보다 전문적인 개발기업입니다.
-            </Box>
+            <Box mt={['10px', '5px', '5px']}>{t('section2Lecle', { total: totalCount })}</Box>
           </Box>
         </Flex>
         <Flex w={'100%'} h={['200px', '280px', '400px']} position={'absolute'} zIndex={'0'} bottom={['150px', '82px', '150px']}>

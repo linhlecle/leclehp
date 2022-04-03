@@ -1,4 +1,5 @@
 import { Textarea } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 import React, { forwardRef } from 'react';
 
 type DetailItemProps = {
@@ -7,12 +8,13 @@ type DetailItemProps = {
 };
 
 function DetailItem({ value, onChange }: DetailItemProps, ref: any) {
+  const t = useTranslations('Contact');
   return (
     <Textarea
       ref={ref}
       value={value}
       onChange={onChange}
-      placeholder="문의사항 및 프로젝트 내용을 상세하게 입력해주세요."
+      placeholder={t('q4Input')}
       _placeholder={{ color: 'gray.500' }}
       resize={'none'}
       border={'2px'}

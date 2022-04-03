@@ -4,8 +4,12 @@ import useMedia from 'hooks/useMedia';
 import InfiniteSlider from 'components/InfiniteSlider';
 import SliderItem from './_fragments/SliderItem';
 import { MARQUEE } from 'constants/marquee';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 function Section3() {
+  const t = useTranslations('Home');
+  const { locale } = useRouter();
   const { isSmallerThanTablet, isMobile } = useMedia();
 
   return (
@@ -29,11 +33,11 @@ function Section3() {
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
               w={['300px', '380px', '612px']}
-              textStyle={'3xl'}
+              textStyle={locale === 'ko' ? '3xl' : 'xl'}
               fontWeight={'500'}
               color={'black'}
             >
-              <Box wordBreak={'keep-all'}>레클에게 불가능은 없습니다.</Box>
+              <Box wordBreak={'keep-all'}>{t('s3first')}</Box>
               <Flex flexDir={['column', 'row', 'row']} align={['none', 'center', 'center']}>
                 <Badge
                   w={'fit-content'}
@@ -43,15 +47,17 @@ function Section3() {
                   border={'2px solid black'}
                   borderRadius={'20px'}
                 >
-                  <Box textStyle={'4xl'} color={'black'} fontWeight={'500'}>
-                    # 당신에게 필요한
+                  <Box textStyle={locale === 'ko' ? '4xl' : 'xl'} color={'black'} fontWeight={'500'}>
+                    {t('s3Second')}
                   </Box>
                 </Badge>
-                {isSmallerThanTablet ? null : <Box>모든</Box>}
+                {locale === 'ko' ? isSmallerThanTablet ? null : <Box>모든</Box> : null}
               </Flex>
               <Box wordBreak={'keep-all'}>
-                {!isSmallerThanTablet ? null : <chakra.span>모든 </chakra.span>}
-                기술 베이스를 보유 중입니다.
+                {t.rich('s33', {
+                  // eslint-disable-next-line react/display-name
+                  span: (children) => (!isSmallerThanTablet ? null : <chakra.span>{children}</chakra.span>),
+                })}
               </Box>
             </Flex>
           </Flex>

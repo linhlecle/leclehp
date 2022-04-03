@@ -1,4 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 type DATA = {
@@ -9,14 +10,27 @@ type SliderItemProps = {
   datas?: DATA[] | [];
 };
 
+const categoryMapLang: any = {
+  개발자: 'Developer',
+  디자인: 'Design',
+  '클라우드 엔지니어': 'Cloud Engineer',
+  PM: 'PM',
+  기획: 'UX',
+  QA: 'QA',
+  기타: 'Others',
+  TOTAL: 'TOTAL',
+};
+
 function SliderItem({ datas = [] }: SliderItemProps) {
+  const { locale } = useRouter();
   return (
     <Flex flexDir={'row'} align={'flex-end'} justify={'flex-start'}>
       {datas.map(({ category, num }: DATA, index: number) => {
         return (
           <Fragment key={index}>
             <Box minW={'max-content'} textStyle={'5xl'} color={'gray.800'} fontWeight={'700'} lineHeight={1.05}>
-              {num}명
+              {num}
+              {locale === 'ko' ? '명' : ''}
             </Box>
             <Box
               w={'200px'}
@@ -28,7 +42,7 @@ function SliderItem({ datas = [] }: SliderItemProps) {
               transformOrigin={'bottom left'}
               mr={'-50px'}
             >
-              {category.toUpperCase()}
+              {locale === 'en' ? categoryMapLang[category].toUpperCase() : category.toUpperCase()}
             </Box>
           </Fragment>
         );

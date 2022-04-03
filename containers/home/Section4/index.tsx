@@ -2,8 +2,10 @@ import { Box, Flex, Image } from '@chakra-ui/react';
 import SectionLayout from 'components/@Layout/SectionLayout';
 import useMedia from 'hooks/useMedia';
 import useHeight from 'hooks/useHeight';
+import { useTranslations } from 'next-intl';
 
 function Section4() {
+  const t = useTranslations('Home');
   const { isMobile } = useMedia();
   const height = useHeight();
 
@@ -35,7 +37,7 @@ function Section4() {
           >
             {isMobile ? (
               <>
-                <Box>블록체인 코어 개발은 물론 운영까지 동시에 가능한 기술적 역량을 보유한 기업입니다.</Box>
+                <Box>{t('s4mobile')}</Box>
                 <Image
                   src={`/images/home/section4/arrow_mobile.png`}
                   alt={'text decoration image'}
@@ -66,9 +68,14 @@ function Section4() {
               </>
             ) : (
               <>
-                <Box>블록체인 코어 개발은 물론</Box>
-                <Box>운영까지 동시에 가능한</Box>
-                <Box>기술적 역량을 보유한 기업입니다.</Box>
+                {t.rich('s4', {
+                  // eslint-disable-next-line react/display-name
+                  box: (children) => <Box>{children}</Box>,
+                  // eslint-disable-next-line react/display-name
+                  box2: (children) => <Box>{children}</Box>,
+                  // eslint-disable-next-line react/display-name
+                  box3: (children) => <Box>{children}</Box>,
+                })}
                 <Image
                   srcSet={`/images/home/section4/arrow_tab.png 208w,
                   /images/home/section4/arrow_pc.png 284w`}

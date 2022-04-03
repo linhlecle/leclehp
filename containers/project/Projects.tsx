@@ -6,22 +6,24 @@ import Product from './Product';
 import Business from './Business';
 import Blockchain from './Blockchain';
 import Outsourcing from './Outsourcing';
+import { useTranslations } from 'next-intl';
 
-const TAB = [
-  { name: '전체', value: 'all' },
-  { name: '프로덕트', value: 'product' },
-  { name: '비즈니스', value: 'business' },
-  { name: '블록체인', value: 'blockchain' },
-  { name: '아웃소싱', value: 'outsourcing' },
+const TAB = (t: any) => [
+  { name: t('all'), value: 'all' },
+  { name: t('product'), value: 'product' },
+  { name: t('business'), value: 'business' },
+  { name: t('blockchain'), value: 'blockchain' },
+  { name: t('outsourcing'), value: 'outsourcing' },
 ];
 
 const Projects = () => {
+  const t = useTranslations('Projects');
   const [activeTab, setActiveTab] = useState<string>('all');
 
   return (
     <>
-      <SubHeader title={'레클 프로젝트'} subtitle={'레클은 고객이 원하는 프로덕트를 만듭니다.'} />
-      <Tab tabList={TAB} tab={activeTab} setTab={setActiveTab} />
+      <SubHeader title={t('title')} subtitle={t('subTitle')} />
+      <Tab tabList={TAB(t)} tab={activeTab} setTab={setActiveTab} />
       {(activeTab === '' || activeTab === 'all') && <All />}
       {activeTab === 'product' && <Product category={activeTab} />}
       {activeTab === 'business' && <Business category={activeTab} />}

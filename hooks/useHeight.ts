@@ -4,7 +4,7 @@ function useHeight() {
   const [height, setHeight] = useState<number>(0);
   useEffect(() => {
     const updateSize = () => {
-      setHeight(window.innerHeight);
+      setHeight(window.innerHeight - 1);
     };
     updateSize();
     window.addEventListener('resize', updateSize);

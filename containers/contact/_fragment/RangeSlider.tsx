@@ -4,6 +4,7 @@ import { CheckedOffIcon, CheckedOnIcon } from 'components/@Icons/System';
 import { BUDGET } from 'constants/budget';
 import SliderItem from './SliderItem';
 import SliderMark from './SliderMark';
+import { useTranslations } from 'next-intl';
 
 type RangeSliderProps = {
   onClick: (index: number) => void;
@@ -16,13 +17,14 @@ type RangeSliderProps = {
 };
 
 function RangeSlider({ onClick, onToggle, checked, budget, prevent, active }: RangeSliderProps) {
+  const t = useTranslations('Contact');
   return (
     <Flex flexDir={'column'} mt={'20px'}>
       <Flex flexDir={'row'} align={'center'} justify={'space-between'}>
         <Flex align={'center'}>
           {checked ? (
             <Text textStyle={'md'} color={prevent ? 'gray.500' : 'gray.700'}>
-              예산 미정
+              {t('q6Checkbox')}
             </Text>
           ) : (
             <>
@@ -46,7 +48,7 @@ function RangeSlider({ onClick, onToggle, checked, budget, prevent, active }: Ra
             )}
           </Box>
           <Text textStyle={'md'} color={prevent ? 'gray.500' : 'black'}>
-            예산 미정
+            {t('q6Checkbox')}
           </Text>
         </Flex>
       </Flex>
@@ -54,7 +56,7 @@ function RangeSlider({ onClick, onToggle, checked, budget, prevent, active }: Ra
         <Flex w={'100%'} border={'none'} bgColor={'gray.300'} h={'10px'} borderRadius={'5px'}>
           {!prevent && !checked && (
             <Flex w={'100%'}>
-              {BUDGET.map((_, index) => {
+              {BUDGET(t).map((_, index) => {
                 return <SliderItem key={index} active={active === index} onClick={() => onClick(index)} />;
               })}
             </Flex>

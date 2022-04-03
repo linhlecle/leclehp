@@ -3,11 +3,13 @@ import { NAVIGATION } from 'constants/navigation';
 import { Fragment } from 'react';
 import NextLink from 'next/link';
 import { hoverStyle } from '../hoverStyle';
+import { useTranslations } from 'next-intl';
 
 function AccordionMenu() {
+  const t = useTranslations('Navigation');
   return (
     <Accordion allowToggle>
-      {NAVIGATION.map(({ ko, en, SUB_NAVIGATION }, index) => {
+      {NAVIGATION(t).map(({ ko, en, SUB_NAVIGATION }, index) => {
         return (
           <Fragment key={index}>
             <AccordionItem border={'none'}>
