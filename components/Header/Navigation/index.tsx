@@ -17,12 +17,12 @@ function Navigation({ setIsHover, handleHeaderTextColor, animationComplete, alre
   const t = useTranslations('Navigation');
 
   return (
-    <Flex flexDir={'column'} w={'460px'} h={'80px'} onMouseEnter={() => setIsHover(true)}>
+    <Flex flexDir={'column'} w={'500px'} h={'80px'} onMouseEnter={() => setIsHover(true)}>
       <Flex flexDir={'row'} align={'center'} justify={'space-between'} w={'100%'} minH={'80px'} gap={'20px'}>
         {NAVIGATION(t).map(({ ko, en }, index) => {
           return (
             <NextLink href={en} key={index} passHref>
-              <Link w={'100px'} h={'100%'} {...hoverStyle}>
+              <Link w={'125px'} h={'100%'} {...hoverStyle}>
                 {router.pathname === '/' ? (
                   <Flex
                     key={index}

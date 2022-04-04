@@ -22,7 +22,7 @@ function SubNavigation({ isHover, setIsHover }: SubNavigationProps) {
       transitionDuration={'0.5s'}
       transitionTimingFunction={'ease'}
     >
-      <Flex flexDir={'row'} align={'flex-start'} justify={'space-between'} w={'460px'} py={'30px'}>
+      <Flex flexDir={'row'} align={'flex-start'} justify={'space-between'} w={'500px'} py={'30px'}>
         {NAVIGATION(t).map(({ en, SUB_NAVIGATION }, index) => {
           return (
             <Flex key={index} flexDir={'column'} align={'center'} justify={'center'} gap={'40px'}>

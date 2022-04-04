@@ -57,11 +57,19 @@ function About() {
                 </Box>
               </Button>
             </Flex>
-            <Flex w={'100%'} mt={['60px', '60px', '0px']}>
-              {isPc && <Image src={'/images/company/about_pc.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
-              {isTablet && <Image src={'/images/company/about_tablet.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
-              {isMobile && <Image src={'/images/company/about_mobile.svg'} alt={'about company image'} w={'100%'} h={'100%'} objectFit={'fill'} />}
-            </Flex>
+            {locale === 'ko' ? (
+              <Flex w={'100%'} mt={['60px', '60px', '0px']}>
+                {isPc && <Image src={'/images/company/about_pc.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
+                {isTablet && <Image src={'/images/company/about_tablet.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
+                {isMobile && <Image src={'/images/company/about_mobile.svg'} alt={'about company image'} w={'100%'} h={'100%'} objectFit={'fill'} />}
+              </Flex>
+            ) : (
+              <Flex w={'100%'} mt={['60px', '60px', '0px']}>
+                {isPc && <Image src={'/images/company/Eng_about_pc.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
+                {isTablet && <Image src={'/images/company/Eng_about_tab.svg'} alt={'about company image'} w={'100%'} h={'100%'} />}
+                {isMobile && <Image src={'/images/company/Eng_about_mobile.svg'} alt={'about company image'} w={'100%'} h={'100%'} objectFit={'fill'} />}
+              </Flex>
+            )}
           </Flex>
         </Flex>
       </Flex>
