@@ -24,7 +24,7 @@ export const contactType1 = (t: any) => [
   },
 ];
 
-export const contactType2MapLang = {
+export const contactType2MapLang: any = {
   웹사이트: 'Website',
   '모바일 앱': 'Mobile App',
   프로그램: 'Program',
@@ -90,7 +90,7 @@ export const contactType2 = (t: any) => [
   },
 ];
 
-export const projectTypeMapLang = {
+export const projectTypeMapLang: any = {
   MVP: 'MVP',
   '신규 구축': 'New Construction',
   리뉴얼: 'Renewal',

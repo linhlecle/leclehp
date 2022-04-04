@@ -1,4 +1,4 @@
-export const IDENTITY = (t) => [
+export const IDENTITY = (t: any) => [
   {
     title: t('s51'),
     text: t('s51des'),
