@@ -1,8 +1,10 @@
 import { AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Flex, Text, AspectRatio, Image } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { NewsItemProps } from '../news_type';
 
 function NewsItem({ category, title, subtitle, content, image, publishDate, source }: NewsItemProps) {
+  const t = useTranslations('News');
   const [isHover, setIsHover] = useState<boolean>(false);
 
   return (
@@ -73,7 +75,7 @@ function NewsItem({ category, title, subtitle, content, image, publishDate, sour
             {content}
             {!source ? null : <br />}
             {!source ? null : <br />}
-            {!source ? null : `출처 : ${source}`}
+            {!source ? null : `${t('source')} : ${source}`}
           </Text>
         </Flex>
       </AccordionPanel>

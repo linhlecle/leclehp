@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 import { Flex, Button, Image, Box, Text, AspectRatio, SimpleGrid, Link } from '@chakra-ui/react';
 import SubHeader from 'components/SubHeader';
 import { BUSINESS } from 'constants/business';
+import { useTranslations } from 'next-intl';
 
 const Business = () => {
+  const t = useTranslations('Services');
   const router = useRouter();
   const [activeType, setActiveType] = useState<number>(0);
   const cardRef = useRef<any>([]);
@@ -28,11 +30,11 @@ const Business = () => {
 
   return (
     <>
-      <SubHeader title={'사업영역'} subtitle={'레클에서는 다양한 분야에서'} subtitle2={'전문적인 솔루션을 제공합니다.'} />
+      <SubHeader title={t('title')} subtitle={t('subTitle')} subtitle2={t('subTitle2')} />
       <Flex align={'center'} justify={'center'} w={'100%'} h={'100%'}>
         <Flex flexDir={'column'} px={['16px', '120px', '100px']} w={'100%'} maxW={['100%', '100%', 'calc(100% - 200px)']}>
           <SimpleGrid columns={[1, 2, 2, 3]} spacing={['20px', '20px', '18px']} mt={['40px', '40px', '70px']}>
-            {BUSINESS.map((d: any, idx: number) => {
+            {BUSINESS(t).map((d: any, idx: number) => {
               const isActive = activeType === idx + 1;
               return (
                 <AspectRatio
@@ -97,14 +99,14 @@ const Business = () => {
             <AspectRatio bg="black" ratio={0.95} borderRadius="20px">
               <Flex h="100%" w="100%" direction="column">
                 <Text textStyle="lg" textAlign="center" color="white" fontWeight="bold">
-                  더 자세한 상담이
+                  {t('s6Title')}
                   <br />
-                  필요하신가요?
+                  {t('s6Title2')}
                 </Text>
                 <NextLink href="/contact" passHref>
                   <Link>
                     <Button as="a" colorScheme="darkgray" mt="20px">
-                      개발문의하기
+                      {t('s6SubTitle')}
                     </Button>
                   </Link>
                 </NextLink>

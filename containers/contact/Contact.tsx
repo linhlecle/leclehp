@@ -13,7 +13,7 @@ import DetailItem from './_fragment/DetailItem';
 import RangeSlider from 'containers/contact/_fragment/RangeSlider';
 import FileUploader from './_fragment/FileUploader';
 
-import { contactType1, contactType2, contactType3, contactType4 } from 'constants/contact';
+import { contactType1, contactType2, contactType2MapLang, contactType3, contactType4, projectTypeMapLang } from 'constants/contact';
 import { BUDGET } from 'constants/budget';
 
 import get from 'apis/Contact/GET';
@@ -26,8 +26,12 @@ import { checker } from 'utils/checker';
 import Toast from 'components/Toast';
 import { convertMd } from 'utils/convertMd';
 import { POLICY } from 'constants/policy';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 function Contact() {
+  const t = useTranslations('Contact');
+  const { locale } = useRouter();
   const { data: contactDetail } = useQuery(['contact_detail'], get.getContactDetail);
   const { data: projectType } = useQuery(['project_type'], get.getProjectType);
   const { mutateAsync } = useMutation(post.postContact);
@@ -36,13 +40,13 @@ function Contact() {
 
   const [type1, setType1] = useState<string>('');
   const [prevent, setPrevent] = useState<boolean>(false);
-  const [type2, setType2] = useState<any[]>(contactType2);
-  const [type3, setType3] = useState<any[]>(contactType3);
+  const [type2, setType2] = useState<any[]>(contactType2(t));
+  const [type3, setType3] = useState<any[]>(contactType3(t));
   const [detail, setDetail] = useState<string>('');
   const [files, setFiles] = useState<any | null>(null);
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
-  const [budget, setBudget] = useState<string>('5,000만원 이하');
+  const [budget, setBudget] = useState<string>(t('q6Text1'));
   const [checked, setChecked] = useState<boolean>(false);
   const [active, setActive] = useState<number>(0);
   const [companyName, setCompanyName] = useState<string>('');
@@ -61,7 +65,7 @@ function Contact() {
   const detailRef = useRef<any>(null);
 
   const onClickType1 = (value: string) => {
-    if (value === '아직 잘 모르겠어요') {
+    if (value === t('q1Btn4')) {
       setPrevent(true);
       detailRef.current.focus({ preventScroll: false });
       window.scrollTo({
@@ -72,11 +76,11 @@ function Contact() {
       setType2(type2.map((type) => ({ ...type, checked: false })));
       setType3(type3.map((type) => ({ ...type, checked: false })));
       setActive(0);
-      setBudget('예산 미정');
+      setBudget(t('q6Checkbox'));
     } else {
       setPrevent(false);
       setType1(value);
-      setBudget('5,000만원 이하');
+      setBudget(t('q6Text1'));
     }
   };
   const onClickType2 = (id: number) => {
@@ -92,7 +96,7 @@ function Contact() {
     const fullsize = [...files].map((v) => v.size).reduce((acc, cur) => acc + cur, 0);
     if (fullsize > 50 * 1024 * 1024) {
       setConfirmed(true);
-      setMessage('파일 크기가 초과되었습니다');
+      setMessage(t('fileSizeExceed'));
       setTimeout(() => setConfirmed(false), 2000);
     } else {
       setFiles(files);
@@ -100,16 +104,16 @@ function Contact() {
   };
   const onClickBudget = (index: number): void => {
     setActive(index);
-    setBudget(BUDGET[index]);
+    setBudget(BUDGET(t)[index]);
   };
   const onToggle = () => {
     if (checked) {
       setChecked(false);
-      setBudget('5,000만원 이하');
+      setBudget(t('q6Text1'));
       setActive(0);
     } else {
       setChecked(true);
-      setBudget('예산 미정');
+      setBudget(t('q6Checkbox'));
     }
   };
   const onChangeCompanyName = (value: string) => setCompanyName(value);
@@ -120,8 +124,8 @@ function Contact() {
   const onChangePhone = (value: string) => setPhone(value);
   const onclickType4 = (value: string) => {
     setFunnel(value);
-    value === '마케팅 매체' ? setIsOpenByMarketingMedia(true) : setIsOpenByMarketingMedia(false);
-    if (value === '마케팅 매체') {
+    value === t('q8Btn7') ? setIsOpenByMarketingMedia(true) : setIsOpenByMarketingMedia(false);
+    if (value === t('q8Btn7')) {
       setIsOpenByMarketingMedia(true);
     } else {
       setIsOpenByMarketingMedia(false);
@@ -178,7 +182,7 @@ function Contact() {
           customerName,
           email,
           phone,
-          funnel: `${funnel}${funnel === '마케팅 매체' ? '-' + funnel2 : ''}`,
+          funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
           files: ids,
         });
         // md
@@ -226,7 +230,7 @@ function Contact() {
           customerName,
           email,
           phone,
-          funnel: `${funnel}${funnel === '마케팅 매체' ? '-' + funnel2 : ''}`,
+          funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
           files: [],
         });
         // md
@@ -259,7 +263,7 @@ function Contact() {
         });
       }
       setConfirmed(true);
-      setMessage('개발문의가 전송되었습니다');
+      setMessage(t('inquirySent'));
       setTimeout(() => setConfirmed(false), 2000);
       // form reset
       setType1('');
@@ -270,7 +274,7 @@ function Contact() {
       setFiles(null);
       setStartDate(new Date());
       setEndDate(new Date());
-      setBudget('5,000만원 이하');
+      setBudget(t('q6Text1'));
       setChecked(false);
       setActive(0);
       setCompanyName('');
@@ -291,26 +295,26 @@ function Contact() {
   }, [prevent, setChecked]);
 
   useEffect(() => {
-    const type2 = contactDetail?.map((type: any) => ({ ...type, checked: false }));
-    const type3 = projectType?.map((type: any) => ({ ...type, checked: false }));
+    const type2 = contactDetail?.map((type: any) => ({ ...type, name: locale === 'ko' ? type.name : contactType2MapLang[type.name], checked: false }));
+    const type3 = projectType?.map((type: any) => ({ ...type, name: locale === 'ko' ? type.name : projectTypeMapLang[type.name], checked: false }));
     setType2(type2);
     setType3(type3);
-  }, [contactDetail, projectType]);
+  }, [contactDetail, projectType, locale]);
   return (
     <>
       <Toast confirmed={confirmed} message={message} />
-      <SubHeader title={'개발 문의'} subtitle={'레클에 문의하실 내용을 알려주세요!'} subtitle2={'빠르게 연락드립니다.'} />
+      <SubHeader title={t('title')} subtitle={t('subTitle')} subtitle2={t('subTitle2')} />
       <Flex align={'center'} justify={'center'} w={'100%'} h={'100%'}>
         <Flex flexDir={'column'} px={['16px', '120px', '100px']} w={'100%'} maxW={['100%', '100%', 'calc(100% - 200px)']}>
-          <ButtonGroup title={'문의 유형*'}>
+          <ButtonGroup title={t('q1')}>
             <Flex flexDir={'row'} flexWrap={'wrap'} mt={'10px'}>
-              {contactType1.map(({ value }, index, arr) => {
+              {contactType1(t).map(({ value }, index, arr) => {
                 const active = type1 === arr[index].value;
                 return <ButtonItem key={index} value={value} onClick={() => onClickType1(value)} active={active} />;
               })}
             </Flex>
           </ButtonGroup>
-          <ButtonGroup title={'문의 내용*'}>
+          <ButtonGroup title={t('q2')}>
             <Flex flexDir={'row'} flexWrap={'wrap'} mt={'10px'}>
               {type2?.map((type, index) => {
                 const { id, name, checked } = type;
@@ -318,7 +322,7 @@ function Contact() {
               })}
             </Flex>
           </ButtonGroup>
-          <ButtonGroup title={'프로젝트 유형*'}>
+          <ButtonGroup title={t('q3')}>
             <Flex flexDir={'row'} flexWrap={'wrap'} mt={'10px'}>
               {type3?.map((type, index) => {
                 const { id, name, checked } = type;
@@ -326,16 +330,16 @@ function Contact() {
               })}
             </Flex>
           </ButtonGroup>
-          <ButtonGroup title={'상세 내용'}>
+          <ButtonGroup title={t('q4')}>
             <DetailItem value={detail} onChange={(e) => onChangeDetail(e.target.value)} ref={detailRef} />
             <FileUploader files={files} onChange={(files) => onChangeFile(files)} />
           </ButtonGroup>
-          <ButtonGroup title="예상 착수 기간" mt={['80px', '80px', '100px']}>
+          <ButtonGroup title={t('q5')} mt={['80px', '80px', '100px']}>
             <Flex align={'center'} justify={'space-between'} mt={'20px'}>
               <Calendar startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate} prevent={prevent} />
             </Flex>
           </ButtonGroup>
-          <ButtonGroup title="예산" mt={['80px', '80px', '100px']}>
+          <ButtonGroup title={t('q6')} mt={['80px', '80px', '100px']}>
             <RangeSlider
               onClick={(index) => onClickBudget(index)}
               onToggle={() => onToggle()}
@@ -346,23 +350,23 @@ function Contact() {
               active={active}
             />
           </ButtonGroup>
-          <ButtonGroup title={'문의 정보*'}>
+          <ButtonGroup title={t('q7')}>
             <Flex flexDir={['column', 'row', 'row']} gap={['0px', '65px', '65px']}>
               <InputGroup flexDirection={'column'} w={'100%'}>
-                <InputItem name={'회사/단체명'} value={companyName} onChange={(e) => onChangeCompanyName(e.target.value)} />
-                <InputItem name={'담당자 성명'} value={customerName} onChange={(e) => onChangeCustomerName(e.target.value)} />
-                <InputItem name={'휴대폰 번호(예시: 010-1234-5678)'} value={phone} onChange={(e) => onChangePhone(e.target.value)} />
+                <InputItem name={t('q7Input1')} value={companyName} onChange={(e) => onChangeCompanyName(e.target.value)} />
+                <InputItem name={t('q7Input3')} value={customerName} onChange={(e) => onChangeCustomerName(e.target.value)} />
+                <InputItem name={t('q7Input5')} value={phone} onChange={(e) => onChangePhone(e.target.value)} />
               </InputGroup>
               <InputGroup flexDirection={'column'} w={'100%'}>
-                <InputItem name={'업종'} value={companyField} onChange={(e) => onChangeCompanyField(e.target.value)} />
-                <InputItem name={'직책'} value={customerPositions} onChange={(e) => onChangeCompanyPosition(e.target.value)} />
-                <InputItem name={'이메일(예시: lecle@lecle.com)'} value={email} onChange={(e) => onChangeEmail(e.target.value)} />
+                <InputItem name={t('q7Input2')} value={companyField} onChange={(e) => onChangeCompanyField(e.target.value)} />
+                <InputItem name={t('q7Input4')} value={customerPositions} onChange={(e) => onChangeCompanyPosition(e.target.value)} />
+                <InputItem name={t('q7Input6')} value={email} onChange={(e) => onChangeEmail(e.target.value)} />
               </InputGroup>
             </Flex>
           </ButtonGroup>
-          <ButtonGroup title={'유입 경로*'}>
+          <ButtonGroup title={t('q8')}>
             <Flex flexDir={'row'} flexWrap={'wrap'} mt={'10px'}>
-              {contactType4.map(({ value }, index, arr) => {
+              {contactType4(t).map(({ value }, index, arr) => {
                 const active = funnel === arr[index].value;
                 return <ButtonItem key={index} value={value} onClick={() => onclickType4(value)} active={active} />;
               })}
@@ -370,12 +374,7 @@ function Contact() {
           </ButtonGroup>
           {isOpenByMarketingMedia && (
             <Flex flexDir={['column', 'row', 'row']} gap={['0px', '65px', '65px']}>
-              <InputItem
-                name={'마케팅 매체'}
-                value={funnel2}
-                placeholder={'어떤 마케팅 매체를 통해 방문하셨나요?'}
-                onChange={(e) => onChangeMarketingMedia(e.target.value)}
-              />
+              <InputItem name={t('q8Btn7')} value={funnel2} placeholder={t('marketingMedia')} onChange={(e) => onChangeMarketingMedia(e.target.value)} />
               <Box w={'100%'} />
             </Flex>
           )}
@@ -388,16 +387,20 @@ function Contact() {
                   <CheckedOffIcon marginTop={['4px', '4px', '2px']} w={['24px', '22.8px', '22.8px']} h={['24px', '22.8px', '22.8px']} />
                 )}
               </Box>
-              <Box textStyle={'md'}>
-                <Box display={'inline'} textStyle={'md'} borderBottom={'1px solid black'}>
-                  <NextLink href={POLICY} passHref>
-                    <Link isExternal>
-                      <a>개인정보보호정책</a>
-                    </Link>
-                  </NextLink>
-                </Box>
-                에 동의합니다.
-              </Box>
+              {t.rich('q8Checkbox', {
+                // eslint-disable-next-line react/display-name
+                box: (children) => (
+                  <Box textStyle={'md'} ml={locale === 'en' ? '3px' : 0}>
+                    <Box display={'inline'} textStyle={'md'} borderBottom={'1px solid black'}>
+                      <NextLink href={POLICY} passHref>
+                        <Link isExternal>
+                          <a> {children}</a>
+                        </Link>
+                      </NextLink>
+                    </Box>
+                  </Box>
+                ),
+              })}
             </Flex>
           </Flex>
           <Flex mt={['60px', '30px', '30px']} align={'center'} justify={'center'}>
@@ -412,7 +415,7 @@ function Contact() {
               onClick={onSubmit}
             >
               <Box color={'white'} textStyle={'md'} fontWeight={'700'}>
-                문의하기
+                {t('submit')}
               </Box>
             </Button>
           </Flex>

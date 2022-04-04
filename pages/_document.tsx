@@ -8,7 +8,7 @@ const SITE_TITLE = 'LECLE';
 const SITE_DESCRIPTION = '글로벌 소프트웨어 하우스 LECLE';
 const SITE_IMAGE = '/images/lecle_og.png';
 
-const GOOGLE_ANALYTICS_ID = 'UA-221436239-1';
+const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

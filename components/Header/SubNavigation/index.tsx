@@ -1,5 +1,6 @@
 import { Flex, Link } from '@chakra-ui/react';
 import { NAVIGATION } from 'constants/navigation';
+import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
 import { hoverStyle } from '../hoverStyle';
 
@@ -9,6 +10,7 @@ type SubNavigationProps = {
 };
 
 function SubNavigation({ isHover, setIsHover }: SubNavigationProps) {
+  const t = useTranslations('Navigation');
   return (
     <Flex
       align={'center'}
@@ -21,7 +23,7 @@ function SubNavigation({ isHover, setIsHover }: SubNavigationProps) {
       transitionTimingFunction={'ease'}
     >
       <Flex flexDir={'row'} align={'flex-start'} justify={'space-between'} w={'460px'} py={'30px'}>
-        {NAVIGATION.map(({ en, SUB_NAVIGATION }, index) => {
+        {NAVIGATION(t).map(({ en, SUB_NAVIGATION }, index) => {
           return (
             <Flex key={index} flexDir={'column'} align={'center'} justify={'center'} gap={'40px'}>
               {SUB_NAVIGATION.map(({ ko: ko2, en: en2 }, index2) => {

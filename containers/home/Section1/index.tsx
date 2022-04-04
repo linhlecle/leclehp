@@ -1,5 +1,6 @@
 import { Box, Flex, Image, chakra } from '@chakra-ui/react';
 import SectionLayout from 'components/@Layout/SectionLayout';
+import { useTranslations } from 'next-intl';
 
 import Animation from './_fragments/Animation';
 
@@ -11,6 +12,8 @@ type Section1Props = {
 };
 
 function Section1({ lottieComplete, animationComplete, setAnimationComplete, alreadyLoaded }: Section1Props) {
+  // const { locale } = useRouter();
+  const t = useTranslations('Home');
   return (
     <SectionLayout>
       <Flex
@@ -39,23 +42,44 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
               alt="build up idea"
             />
             <Box color={animationComplete || alreadyLoaded ? 'primary.500' : 'white'} mt={['5px', '10px', '20px']}>
-              <Box textStyle={'2xl'} fontWeight={'900'}>
-                아이디어,
-              </Box>
-              <Box textStyle={'2xl'} fontWeight={'900'}>
-                한 단계 더 쌓아올리다.
-              </Box>
+              {t.rich('idea', {
+                // eslint-disable-next-line react/display-name
+                box: (children) => (
+                  <Box textStyle={'2xl'} fontWeight={'900'}>
+                    {children}
+                  </Box>
+                ),
+                // eslint-disable-next-line react/display-name
+                box2: (children) => (
+                  <Box textStyle={'2xl'} fontWeight={'900'}>
+                    {children}
+                  </Box>
+                ),
+              })}
             </Box>
             <Box color={animationComplete || alreadyLoaded ? 'gray.500' : 'white'} mt={'20px'}>
-              <Box textStyle={'2xl'} fontWeight={'900'}>
-                8년 노하우 글로벌
-              </Box>
-              <Box textStyle={'2xl'} fontWeight={'900'}>
-                소프트웨어 하우스
-              </Box>
-              <Box textStyle={'2xl'} fontWeight={'900'}>
-                오직 <chakra.span color={animationComplete || alreadyLoaded ? 'point' : 'white'}>LECLE</chakra.span> 에서
-              </Box>
+              {t.rich('ideaDescription', {
+                // eslint-disable-next-line react/display-name
+                box: (children) => (
+                  <Box textStyle={'2xl'} fontWeight={'900'}>
+                    {children}
+                  </Box>
+                ),
+                // eslint-disable-next-line react/display-name
+                box2: (children) => (
+                  <Box textStyle={'2xl'} fontWeight={'900'}>
+                    {children}
+                  </Box>
+                ),
+                // eslint-disable-next-line react/display-name
+                box3: (children) => (
+                  <Box textStyle={'2xl'} fontWeight={'900'}>
+                    {children}
+                  </Box>
+                ),
+                // eslint-disable-next-line react/display-name
+                span: (children) => <chakra.span color={animationComplete || alreadyLoaded ? 'point' : 'white'}>{children}</chakra.span>,
+              })}
             </Box>
           </Flex>
         </Flex>

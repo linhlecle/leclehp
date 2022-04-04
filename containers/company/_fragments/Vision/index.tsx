@@ -2,8 +2,10 @@ import { AspectRatio, Box, Flex, Image, SimpleGrid, Text } from '@chakra-ui/reac
 import useMedia from 'hooks/useMedia';
 import React from 'react';
 import { VISION, VISION2 } from 'constants/vision';
+import { useTranslations } from 'next-intl';
 
 function Vision() {
+  const t = useTranslations('AboutUs');
   const { isMobile } = useMedia();
   return (
     <Flex align={'center'} justify={'center'} w={'100%'} h={'100%'} bgColor={'gray.50'} pb={'130px'}>
@@ -12,25 +14,25 @@ function Vision() {
           <>
             {isMobile ? (
               <>
-                <Image src={VISION[1].image} alt="비전" objectFit="contain" />
+                <Image src={VISION(t)[1].image} alt="비전" objectFit="contain" />
                 <Flex flexDir={'column'} justify={'center'} align={'center'} h={'100%'}>
                   <Text textAlign={'center'} fontFamily={'montserrat'} fontWeight={'600'} textStyle={'sm'} color={'white'}>
-                    {VISION[1].title}
+                    {VISION(t)[1].title}
                   </Text>
                   <Text mt={'10px'} whiteSpace={'pre-line'} textStyle={'xl'} color={'white'} fontWeight={'700'} textAlign={'center'}>
-                    {VISION[1].content}
+                    {VISION(t)[1].content}
                   </Text>
                 </Flex>
               </>
             ) : (
               <>
-                <Image src={VISION[0].image} alt="비전" objectFit="contain" />
+                <Image src={VISION(t)[0].image} alt="비전" objectFit="contain" />
                 <Flex flexDir={'column'} justify={'center'} align={'center'} h={'100%'}>
                   <Text textAlign={'center'} fontFamily={'montserrat'} fontWeight={'600'} textStyle={'sm'} color={'white'}>
-                    {VISION[0].title}
+                    {VISION(t)[0].title}
                   </Text>
                   <Text mt={'10px'} whiteSpace={'pre-line'} textStyle={'xl'} color={'white'} fontWeight={'700'} textAlign={'center'}>
-                    {VISION[0].content}
+                    {VISION(t)[0].content}
                   </Text>
                 </Flex>
               </>
@@ -39,7 +41,7 @@ function Vision() {
         </AspectRatio>
         <SimpleGrid columns={[1, 2, 3]} spacing={'24px'} mt={'24px'}>
           <>
-            {VISION2.map(({ title, content, image }, index) => {
+            {VISION2(t).map(({ title, content, image }, index) => {
               return (
                 <AspectRatio key={index} ratio={330 / 400} borderRadius={'20px'} overflow={'hidden'} boxShadow={'0px 0px 10px rgba(26, 26, 26, 0.1)'}>
                   <>

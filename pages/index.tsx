@@ -5,7 +5,7 @@ export { default } from 'containers/home';
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      messages: (await import(`../messages/home/${locale}.json`)).default,
+      messages: (await import(`../messages/${locale}.json`)).default,
     },
   };
 }

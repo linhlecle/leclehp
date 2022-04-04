@@ -17,10 +17,10 @@ function DrawerNavigation({ activeIndex, animationComplete, alreadyLoaded }: Dra
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const { isTablet, isMobile } = useMedia();
-  const router = useRouter();
+  const { route, pathname, locale } = useRouter();
 
   const handleDrawerButtonColor = () => {
-    if (router.pathname === '/') {
+    if (pathname === '/') {
       if (isTablet && !isMobile) {
         return 'white';
       }
@@ -31,6 +31,8 @@ function DrawerNavigation({ activeIndex, animationComplete, alreadyLoaded }: Dra
       return 'white';
     }
   };
+
+  console.log('========', route);
 
   return (
     <>
@@ -70,17 +72,29 @@ function DrawerNavigation({ activeIndex, animationComplete, alreadyLoaded }: Dra
 
           <DrawerFooter p={'0px'} h={'80px'}>
             <Flex flexDir={'row'} align={'center'} justify={'flex-start'} minH={'80px'} w={'100%'}>
-              <Box textStyle={'md'} fontWeight={'700'} color={'black'} cursor={'pointer'} {...hoverStyle}>
-                <NextLink href={'https://www.lecle.co.kr/'} passHref>
-                  <Link target={'_blank'}>KOR</Link>
+              <Box
+                textStyle={'md'}
+                fontWeight={locale === 'ko' ? '700' : '400'}
+                color={locale === 'ko' ? 'black' : 'gray.700'}
+                cursor={'pointer'}
+                {...hoverStyle}
+              >
+                <NextLink href={route} locale="ko">
+                  <Link>KOR</Link>
                 </NextLink>
               </Box>
               <Box px={'10px'} color={'gray.700'}>
                 |
               </Box>
-              <Box textStyle={'md'} fontWeight={'400'} color={'gray.700'} cursor={'not-allowed'}>
-                <NextLink href={'#'} passHref>
-                  <Link target={'_blank'}>ENG</Link>
+              <Box
+                textStyle={'md'}
+                fontWeight={locale === 'en' ? '700' : 'normal'}
+                color={locale === 'en' ? 'black' : 'gray.700'}
+                cursor={'pointer'}
+                {...hoverStyle}
+              >
+                <NextLink href={route} locale="en">
+                  <Link>ENG</Link>
                 </NextLink>
               </Box>
             </Flex>

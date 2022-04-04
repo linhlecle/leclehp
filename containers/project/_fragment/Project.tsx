@@ -1,5 +1,6 @@
 import { Flex, Image, Box, Text, AspectRatio, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Button } from '@chakra-ui/react';
 import useMedia from 'hooks/useMedia';
+import { useTranslations } from 'next-intl';
 import BehindStory from './BehindStory';
 import ProjectDetail from './ProjectDetail';
 
@@ -19,14 +20,15 @@ type ProjectDataProps = {
   behindstorySet: any[];
 };
 
-const enToKo = (category: string): string | undefined => {
-  if (category === 'product') return '프로덕트';
-  if (category === 'business') return '비즈니스';
-  if (category === 'blockchain') return '블록체인';
-  if (category === 'outsourcing') return '아웃소싱';
+const enToKo = (category: string, t: any): string | undefined => {
+  if (category === 'product') return t('product');
+  if (category === 'business') return t('business');
+  if (category === 'blockchain') return t('blockchain');
+  if (category === 'outsourcing') return t('outsourcing');
 };
 
 function Project({ status, datas, onClickMore, hasNextPage }: ProjectProps) {
+  const t = useTranslations('Projects');
   const DATA = status === 'success' ? datas.pages.map((page: any) => page.results).flatMap((v: any) => v) : [];
   const { isPc } = useMedia();
 
@@ -54,7 +56,7 @@ function Project({ status, datas, onClickMore, hasNextPage }: ProjectProps) {
                       <Flex mb="10px" alignItems="center">
                         <Box w="10px" h="3px" bg="point" mr="10px" />
                         <Text textStyle="sm" fontWeight={'700'}>
-                          {enToKo(category)}
+                          {enToKo(category, t)}
                         </Text>
                       </Flex>
                       <Text textStyle={'lg'} fontWeight="bold">
@@ -111,7 +113,7 @@ function Project({ status, datas, onClickMore, hasNextPage }: ProjectProps) {
                     {behindstorySet?.length > 0 && (
                       <>
                         <Box mt={'30px'} textStyle={'lg'} fontWeight={'700'} color={'black'}>
-                          레클 비하인드 스토리
+                          {t('behind')}
                         </Box>
                         <Flex flexDir={'column'} w={'100%'} gap={['30px', '40px', '40px']} mt={'20px'}>
                           {behindstorySet.map(({ content, participator }: any, index: number) => (
@@ -140,7 +142,7 @@ function Project({ status, datas, onClickMore, hasNextPage }: ProjectProps) {
             onClick={onClickMore}
           >
             <Box fontWeight={'700'} textStyle={'md'}>
-              더보기
+              {t('viewMore')}
             </Box>
           </Button>
         </Flex>

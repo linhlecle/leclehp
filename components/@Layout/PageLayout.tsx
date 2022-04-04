@@ -17,7 +17,7 @@ function PageLayout({ children }: PageLayoutProps) {
   const { isMobile, isTablet, isPc } = useMedia();
 
   return (
-    <Flex direction="column" w={'100%'} minH={'100vh'} overflowX={'hidden'}>
+    <Flex direction="column" w={'100%'} minH={'100vh'} overflow={'hidden'}>
       <Header />
       {children}
       <Footer />

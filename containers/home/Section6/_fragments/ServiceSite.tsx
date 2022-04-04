@@ -3,8 +3,10 @@ import { Box, Flex, chakra, Select } from '@chakra-ui/react';
 import { FAMILY_SITE } from 'constants/family-site';
 import ArrowDownRegularIcon from 'components/@Icons/System/ArrowDownRegular';
 import useMedia from 'hooks/useMedia';
+import { useRouter } from 'next/router';
 
 function ServiceSite() {
+  const { locale } = useRouter();
   const { isMobile } = useMedia();
 
   const handleServiceSite = (src: string): void => {
@@ -28,22 +30,35 @@ function ServiceSite() {
         <Box textStyle={'2md'} fontFamily={'montserrat'} fontWeight={'700'} color={'point'}>
           LECLE PRODUCT
         </Box>
-        <Box textStyle={'lg'} color={'white'} mt={'10px'}>
-          다양한 <chakra.span fontWeight={'700'}>블록체인 서비스</chakra.span>와
-        </Box>
-        {isMobile ? (
+        {locale === 'ko' ? (
           <>
-            <Box textStyle={'lg'} color={'white'}>
-              <chakra.span fontWeight={'700'}>IT 인재 양성 기관</chakra.span>을
+            <Box textStyle={'lg'} color={'white'} mt={'10px'}>
+              다양한 <chakra.span fontWeight={'700'}>블록체인 서비스</chakra.span>와
             </Box>
-            <Box textStyle={'lg'} color={'white'}>
-              운영 중입니다.
-            </Box>
+            {isMobile ? (
+              <>
+                <Box textStyle={'lg'} color={'white'}>
+                  <chakra.span fontWeight={'700'}>IT 인재 양성 기관</chakra.span>을
+                </Box>
+                <Box textStyle={'lg'} color={'white'}>
+                  운영 중입니다.
+                </Box>
+              </>
+            ) : (
+              <Box textStyle={'lg'} color={'white'}>
+                <chakra.span fontWeight={'700'}>IT 인재 양성 기관</chakra.span>을 운영 중입니다.
+              </Box>
+            )}
           </>
         ) : (
-          <Box textStyle={'lg'} color={'white'}>
-            <chakra.span fontWeight={'700'}>IT 인재 양성 기관</chakra.span>을 운영 중입니다.
-          </Box>
+          <>
+            <Box textStyle={'lg'} color={'white'} mt={'10px'}>
+              We operate various <chakra.span fontWeight={'700'}>blockchain-related services</chakra.span>
+            </Box>
+            <Box textStyle={'lg'} color={'white'}>
+              and facilitate an <chakra.span fontWeight={'700'}>IT expertise training academy.</chakra.span>
+            </Box>
+          </>
         )}
         <Select
           variant={'outline'}

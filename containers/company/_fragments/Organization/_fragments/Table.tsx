@@ -1,6 +1,7 @@
 import { chakra } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import api from 'apis/Hr/GET';
+import { useRouter } from 'next/router';
 
 type DataType = {
   id: number;
@@ -8,7 +9,19 @@ type DataType = {
   num: number;
 };
 
+const categoryMapLang: any = {
+  개발자: 'Developer',
+  디자인: 'Design',
+  '클라우드 엔지니어': 'Cloud Engineer',
+  PM: 'PM',
+  기획: 'UX',
+  QA: 'QA',
+  기타: 'Others',
+  TOTAL: 'TOTAL',
+};
+
 function Table() {
+  const { locale } = useRouter();
   const { data } = useQuery<any>(['hr'], api.getHr);
 
   return (
@@ -36,7 +49,7 @@ function Table() {
                 borderRightColor={index === arr.length - 1 ? 'none' : 'gray.300'}
                 borderRightStyle={index === arr.length - 1 ? 'none' : 'solid'}
               >
-                {category.toUpperCase()}
+                {locale === 'en' ? categoryMapLang[category].toUpperCase() : category.toUpperCase()}
               </chakra.th>
             );
           })}
@@ -56,7 +69,8 @@ function Table() {
                 borderRightColor={index === arr.length - 1 ? 'none' : 'gray.300'}
                 borderRightStyle={index === arr.length - 1 ? 'none' : 'solid'}
               >
-                {num}명
+                {num}
+                {locale === 'ko' ? '명' : ''}
               </chakra.th>
             );
           })}
@@ -67,6 +81,7 @@ function Table() {
 }
 
 function TableMobile() {
+  const { locale } = useRouter();
   const { data } = useQuery<any>('hr', api.getHr);
 
   return (
@@ -85,10 +100,11 @@ function TableMobile() {
               textStyle={'sm'}
               fontWeight={'700'}
             >
-              {category}
+              {locale === 'en' ? categoryMapLang[category] : category}
             </chakra.td>
             <chakra.td textAlign={'center'} textStyle={'sm'}>
-              {num}명
+              {num}
+              {locale === 'ko' ? '명' : ''}
             </chakra.td>
           </chakra.tr>
         );

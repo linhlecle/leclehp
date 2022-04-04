@@ -20,8 +20,24 @@ function MainHeader({ isHover, setIsHover, handleHeaderTextColor, activeIndex, a
   const { route, push, pathname, locale } = useRouter();
   // const otherLocale = locales?.find((cur) => cur !== locale);
   const { isSmallerThanPC } = useMedia();
+  let colorKo = 'white';
+  let colorEn = 'white';
 
-  console.log(route, locale);
+  if (locale === 'ko') {
+    colorKo = 'white';
+    colorEn = 'black';
+    if (isHover) {
+      colorKo = 'black';
+      colorEn = 'gray.700';
+    }
+  } else {
+    colorKo = 'black';
+    colorEn = 'white';
+    if (isHover) {
+      colorEn = 'black';
+      colorKo = 'gray.700';
+    }
+  }
 
   return (
     <Flex flexDir={'row'} align={'center'} justify={'space-between'} w={'100%'} h={'fit-content'} overflow={'hidden'}>
@@ -50,7 +66,7 @@ function MainHeader({ isHover, setIsHover, handleHeaderTextColor, activeIndex, a
             alreadyLoaded={alreadyLoaded}
           />
           <Flex flexDir={'row'} align={'center'} justify={'flex-end'} minH={'80px'} w={'100%'}>
-            <Box textStyle={'md'} fontWeight={'700'} color={locale === 'ko' ? 'white' : 'black'} cursor={animationComplete ? 'pointer' : 'white'}>
+            <Box textStyle={'md'} fontWeight={'700'} color={colorKo} cursor={animationComplete ? 'pointer' : 'white'}>
               <NextLink href={route} locale="ko">
                 <Link>KOR</Link>
               </NextLink>
@@ -58,34 +74,11 @@ function MainHeader({ isHover, setIsHover, handleHeaderTextColor, activeIndex, a
             <Box px={'10px'} color={isHover ? 'gray.700' : animationComplete || alreadyLoaded ? 'black' : 'white'}>
               |
             </Box>
-            <Box textStyle={'md'} fontWeight={'700'} color={locale === 'en' ? 'white' : 'black'} cursor={animationComplete ? 'pointer' : 'white'}>
+            <Box textStyle={'md'} fontWeight={'700'} color={colorEn} cursor={animationComplete ? 'pointer' : 'white'}>
               <NextLink href={route} locale="en">
                 <Link>ENG</Link>
               </NextLink>
             </Box>
-            {/* {pathname === '/' ? (
-              <>
-                <Box px={'10px'} color={isHover ? 'gray.700' : animationComplete || alreadyLoaded ? 'black' : 'white'}>
-                  |
-                </Box>
-                <Box textStyle={'md'} fontWeight={'400'} color={isHover ? 'gray.700' : animationComplete || alreadyLoaded ? 'black' : 'white'}>
-                  <NextLink href={route} locale="en">
-                    <Link cursor={'_blank'}>ENG</Link>
-                  </NextLink>
-                </Box>
-              </>
-            ) : (
-              <>
-                <Box px={'10px'} color={isHover ? 'gray.700' : 'black'}>
-                  |
-                </Box>
-                <Box textStyle={'md'} fontWeight={'400'} color={isHover ? 'gray.700' : 'black'}>
-                  <NextLink href={route} locale="en">
-                    <Link cursor={'_blank'}>ENG</Link>
-                  </NextLink>
-                </Box>
-              </>
-            )} */}
           </Flex>
         </>
       )}

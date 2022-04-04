@@ -1,9 +1,11 @@
 import { Text, Box, Flex, Image } from '@chakra-ui/react';
 import useMedia from 'hooks/useMedia';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { Table, TableMobile } from './_fragments/Table';
 
 function Organization() {
+  const t = useTranslations('AboutUs');
   const { isMobile, isTablet } = useMedia();
 
   return (
@@ -11,7 +13,7 @@ function Organization() {
       <Flex flexDir={'column'} pt={['30px', '50px', '60px']} px={['16px', '120px', '100px']} w={'100%'} maxW={['100%', '100%', 'calc(100% - 200px)']}>
         <Flex flexDir={'column'} align={'center'} justify={'center'}>
           <Text textStyle={'xl'} fontWeight={'700'} whiteSpace={'pre-line'} textAlign={'center'} w={['257px', '389px', '525px']} h={'104px'}>
-            레클은 각 전문가들의 분업과 조화를 바탕으로 구성되어 있습니다.
+            {t('orgTitle')}
           </Text>
           <Box mt={'90px'}>
             {isMobile ? (

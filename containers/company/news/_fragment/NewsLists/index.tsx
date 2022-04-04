@@ -6,8 +6,10 @@ import Pagination from './Pagination';
 import api from 'apis/News/GET';
 import { NewsItemProps } from '../news_type';
 import { useRouter } from 'next/router';
+import { useTranslations } from 'next-intl';
 
 function NewsLists() {
+  const t = useTranslations('News');
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const limit = 10; // news per page
@@ -19,13 +21,13 @@ function NewsLists() {
   const categoryEnToKo = (category: string) => {
     switch (category) {
       case 'log':
-        return '레클로그';
+        return t('log');
       case 'prize':
-        return '수상실적';
+        return t('prize');
       case 'out':
-        return '외부소식';
+        return t('out');
       default:
-        return '레클로그';
+        return t('log');
     }
   };
 
