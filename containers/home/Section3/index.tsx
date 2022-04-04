@@ -33,7 +33,7 @@ function Section3() {
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
               w={['300px', '380px', '612px']}
-              textStyle={locale === 'ko' ? '3xl' : 'xl'}
+              textStyle={locale === 'ko' ? '3xl' : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
             >
@@ -47,7 +47,7 @@ function Section3() {
                   border={'2px solid black'}
                   borderRadius={'20px'}
                 >
-                  <Box textStyle={locale === 'ko' ? '4xl' : 'xl'} color={'black'} fontWeight={'500'}>
+                  <Box textStyle={locale === 'ko' ? '4xl' : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
                     {t('s3Second')}
                   </Box>
                 </Badge>
@@ -63,7 +63,7 @@ function Section3() {
           </Flex>
         </Flex>
         {isMobile ? (
-          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'83px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'20px'} gap={'20px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={7} datas={MARQUEE} />
             </InfiniteSlider>
@@ -78,7 +78,7 @@ function Section3() {
             </InfiniteSlider>
           </Flex>
         ) : (
-          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'83px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'20px'} gap={'20px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={9} datas={MARQUEE} />
             </InfiniteSlider>

@@ -30,6 +30,7 @@ function Navigation({ setIsHover, handleHeaderTextColor, animationComplete, alre
                     justify={'center'}
                     w={'100%'}
                     h={'100%'}
+                    whiteSpace={'nowrap'}
                     color={animationComplete || alreadyLoaded ? handleHeaderTextColor() : 'white'}
                   >
                     {ko}
@@ -41,6 +42,7 @@ function Navigation({ setIsHover, handleHeaderTextColor, animationComplete, alre
                     justify={'center'}
                     w={'100%'}
                     h={'100%'}
+                    whiteSpace={'nowrap'}
                     color={handleHeaderTextColor()}
                     fontWeight={router.pathname === `${en}` ? '700' : '400'}
                   >

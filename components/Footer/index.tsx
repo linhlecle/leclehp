@@ -7,8 +7,8 @@ function Footer() {
       as={'footer'}
       w={'100vw'}
       minW={'100vw'}
-      h={['auto', '382px', '350px']}
-      minH={['auto', '382px', '350px']}
+      h={['auto', '382px', '454px']}
+      minH={['auto', '382px', '454px']}
       bg={'primary.500'}
       px={['16px', '120px', '95px']}
       py={['60px', '40px', '42px']}

@@ -31,8 +31,8 @@ function Section2() {
           <Flex flexDir={'column'} align={'flex-start'} justify={'space-between'}>
             <Box
               mt={['100px', '129px', '130px']}
-              w={['310px', '430px', '640px']}
-              textStyle={'3xl'}
+              w={['310px', '350px', '600px']}
+              textStyle={['xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'white'}
               wordBreak={'keep-all'}
@@ -47,7 +47,7 @@ function Section2() {
           <Box
             position={'absolute'}
             top={['350px', '140px', '146px']}
-            right={['23px', '120px', '200px']}
+            right={['23px', '90px', '150px']}
             textStyle={'md'}
             fontWeight={'400'}
             color={'white'}

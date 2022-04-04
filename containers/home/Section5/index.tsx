@@ -21,7 +21,7 @@ function Section5() {
               gap={['10px', '10px', '22px']}
               align={'center'}
               justify={['flex-start', 'center', 'center']}
-              mt={['20px', '50px', '104px']}
+              mt={['20px', '50px', '0']}
               mb={['97px']}
               w={'100vw'}
               overflow={'scroll'}
