@@ -3,9 +3,11 @@ import SectionLayout from 'components/@Layout/SectionLayout';
 import useMedia from 'hooks/useMedia';
 import useHeight from 'hooks/useHeight';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 function Section4() {
   const t = useTranslations('Home');
+  const { locale } = useRouter();
   const { isMobile } = useMedia();
   const height = useHeight();
 
@@ -52,8 +54,8 @@ function Section4() {
                   alt={'text decoration image'}
                   position={'absolute'}
                   top={'0px'}
-                  left={'126px'}
-                  w={'126px'}
+                  left={locale === 'en' ? '50px' : '126px'}
+                  w={locale === 'en' ? '160px' : '126px'}
                   h={'52px'}
                 />
                 <Image
@@ -92,8 +94,8 @@ function Section4() {
                   alt={'text decoration image'}
                   position={'absolute'}
                   top={['0px', '0px', '0px']}
-                  left={['0px', '170px', '280px']}
-                  w={['0px', '135px', '207px']}
+                  left={['0px', locale === 'en' ? '155px' : '170px', locale === 'en' ? '250px' : '280px']}
+                  w={['0px', locale === 'en' ? '165px' : '135px', locale === 'en' ? '260px' : '207px']}
                   h={['0px', '55px', '84px']}
                 />
                 <Image

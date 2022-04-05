@@ -51,14 +51,14 @@ function ServiceSite() {
             )}
           </>
         ) : (
-          <>
+          <Box textAlign={'center'}>
             <Box textStyle={'lg'} color={'white'} mt={'10px'}>
               We operate various <chakra.span fontWeight={'700'}>blockchain-related services</chakra.span>
             </Box>
             <Box textStyle={'lg'} color={'white'}>
               and facilitate an <chakra.span fontWeight={'700'}>IT expertise training academy.</chakra.span>
             </Box>
-          </>
+          </Box>
         )}
         <Select
           variant={'outline'}
