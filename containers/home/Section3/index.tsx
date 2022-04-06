@@ -32,12 +32,17 @@ function Section3() {
               flexDir={'column'}
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
-              w={['300px', '380px', '612px']}
+              w={['300px', locale === 'en' ? '450px' : '380px', '612px', locale === 'en' ? '950px' : '612px']}
               textStyle={locale === 'ko' ? '3xl' : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
             >
-              <Box wordBreak={'keep-all'}>{t('s3first')}</Box>
+              <Box whiteSpace={'nowrap'}>
+                {t.rich('s3first', {
+                  // eslint-disable-next-line react/display-name
+                  box: (children) => <chakra.span fontWeight={'700'}>{children}</chakra.span>,
+                })}
+              </Box>
               <Flex flexDir={['column', 'row', 'row']} align={['none', 'center', 'center']}>
                 <Badge
                   w={'fit-content'}
@@ -53,7 +58,7 @@ function Section3() {
                 </Badge>
                 {locale === 'ko' ? isSmallerThanTablet ? null : <Box>모든</Box> : null}
               </Flex>
-              <Box wordBreak={'keep-all'}>
+              <Box whiteSpace={'nowrap'}>
                 {t.rich('s33', {
                   // eslint-disable-next-line react/display-name
                   span: (children) => (!isSmallerThanTablet ? null : <chakra.span>{children}</chakra.span>),
