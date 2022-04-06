@@ -16,14 +16,11 @@ type DrawerNavigationProps = {
 function DrawerNavigation({ activeIndex, animationComplete, alreadyLoaded }: DrawerNavigationProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const { isTablet, isMobile } = useMedia();
+  // const { isTablet, isMobile } = useMedia();
   const { route, pathname, locale } = useRouter();
 
   const handleDrawerButtonColor = () => {
     if (pathname === '/') {
-      if (isTablet && !isMobile) {
-        return 'white';
-      }
       if (activeIndex !== 0) {
         return 'white';
       }
@@ -31,8 +28,6 @@ function DrawerNavigation({ activeIndex, animationComplete, alreadyLoaded }: Dra
       return 'white';
     }
   };
-
-  console.log('========', route);
 
   return (
     <>
