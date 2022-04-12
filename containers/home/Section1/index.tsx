@@ -88,8 +88,8 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
             {isSmallerThanPC ? (
               <Image src={`/images/home/section1/mobile.png`} alt={'text decoration image'} />
             ) : isSmallPc ? (
-              <Flex>
-                <Image position={'relative'} ml={'auto'} right={['0', '0', '-30px']} src={`/images/home/section1/tablet.png`} alt={'text decoration image'} />
+              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-30px']}>
+                <Image src={`/images/home/section1/tablet.png`} alt={'text decoration image'} />
               </Flex>
             ) : (
               <Image position={'relative'} ml={'auto'} right={['0', '0', '-70px']} src={`/images/home/section1/pc.png`} alt={'text decoration image'} />
