@@ -32,12 +32,12 @@ function Section3() {
               flexDir={'column'}
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
-              w={['300px', locale === 'en' ? '450px' : '380px', '612px', locale === 'en' ? '950px' : '612px']}
+              minW={['300px', locale === 'en' ? '450px' : '380px', '612px', locale === 'en' ? '950px' : '612px']}
               textStyle={locale === 'ko' ? '3xl' : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
             >
-              <Box whiteSpace={'nowrap'}>
+              <Box whiteSpace={['initial', 'nowrap']}>
                 {t.rich('s3first', {
                   // eslint-disable-next-line react/display-name
                   box: (children) => <chakra.span fontWeight={'700'}>{children}</chakra.span>,
@@ -51,6 +51,7 @@ function Section3() {
                   mr={['0px', '16.5px', '22px']}
                   border={'2px solid black'}
                   borderRadius={'20px'}
+                  whiteSpace={['initial', 'nowrap']}
                 >
                   <Box textStyle={locale === 'ko' ? '4xl' : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
                     {t('s3Second')}
@@ -58,7 +59,7 @@ function Section3() {
                 </Badge>
                 {locale === 'ko' ? isSmallerThanTablet ? null : <Box>모든</Box> : null}
               </Flex>
-              <Box whiteSpace={'nowrap'}>
+              <Box whiteSpace={['initial', 'nowrap']}>
                 {t.rich('s33', {
                   // eslint-disable-next-line react/display-name
                   span: (children) => (!isSmallerThanTablet ? null : <chakra.span>{children}</chakra.span>),
