@@ -49,7 +49,7 @@ function Section6({ swiper }: { swiper: any }) {
       pt={'80px'}
       bgColor={'primary.500'}
       overflowX={'hidden'}
-      overflowY={['scroll', 'hidden', 'hidden']}
+      overflowY={'scroll'}
       css={{
         '&::-webkit-scrollbar': {
           display: 'none',

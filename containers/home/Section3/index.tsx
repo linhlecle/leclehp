@@ -69,7 +69,7 @@ function Section3() {
           </Flex>
         </Flex>
         {isMobile ? (
-          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'20px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'50px'} gap={'20px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={7} datas={MARQUEE} />
             </InfiniteSlider>
@@ -84,7 +84,7 @@ function Section3() {
             </InfiniteSlider>
           </Flex>
         ) : (
-          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'20px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'50px'} gap={'20px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={9} datas={MARQUEE} />
             </InfiniteSlider>
