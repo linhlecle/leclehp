@@ -15,14 +15,14 @@ function SliderItem({ datas = [], startItem, endItem }: SliderItemProps) {
           <Badge
             key={index}
             w={'max-content'}
-            h={['60px', '60px', '79px']}
+            h={['50px', '52px', '58px']}
             px={'15px'}
             py={['5px', '5px', '0px']}
             mr={['10px', '10px', '20px']}
             bgColor={value === 'ANGULAR' ? 'point' : 'black'}
             borderRadius={'20px'}
           >
-            <Flex textStyle={'4xl'} color={'white'} fontWeight={'400'}>
+            <Flex textStyle={'xl'} color={'white'} fontWeight={'400'}>
               {`#${value}`}
             </Flex>
           </Badge>
