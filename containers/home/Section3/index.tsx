@@ -69,7 +69,7 @@ function Section3() {
           </Flex>
         </Flex>
         {isMobile ? (
-          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'83px'} gap={'15px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={'245px'} mb={'83px'} gap={'15px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={7} datas={MARQUEE} />
             </InfiniteSlider>
