@@ -36,9 +36,9 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
         top={0}
       >
         {alreadyLoaded ? null : <Animation lottieComplete={lottieComplete} animationComplete={animationComplete} setAnimationComplete={setAnimationComplete} />}
-        <Flex w={'100%'} h={'100%'} zIndex={3} flexDirection={['column', 'column', 'row']} overflow={'hidden'}>
+        <Flex w={'100%'} h={'100%'} zIndex={3} flexDirection={['column', 'column', 'row']}>
           <>
-            <Flex flexDir={'column'} justify={'flex-start'} mt={'80px'} mb={['0', '20px']} pt={['0px', '0px', '0px']} minWidth={isSmallPc ? '350px' : 'auto'}>
+            <Flex flexDir={'column'} justify={'flex-start'} mt={'80px'} mb={['0', '20px']} pt={['0px', '0px', '0px']} minWidth={'350px'}>
               <Image
                 src={`/images/home/section1/${animationComplete || alreadyLoaded ? 'buildupidea.png' : 'buildupidea_white.svg'}`}
                 w={'124px'}
