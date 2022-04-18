@@ -127,7 +127,11 @@ function Home({ index, setIndex }: HomeProps) {
         touchRatio={1}
       >
         {sections.map(({ section }, index) => {
-          return <SwiperSlide key={index}>{section}</SwiperSlide>;
+          return (
+            <SwiperSlide key={index} style={{ overflow: 'hidden' }}>
+              {section}
+            </SwiperSlide>
+          );
         })}
 
         {alreadyLoaded ? null : !lottieComplete && <Lottie setLottieComplete={setLottieComplete} />}
