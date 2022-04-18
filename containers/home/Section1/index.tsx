@@ -15,7 +15,7 @@ type Section1Props = {
 function Section1({ lottieComplete, animationComplete, setAnimationComplete, alreadyLoaded }: Section1Props) {
   // const { locale } = useRouter();
   const t = useTranslations('Home');
-  const { isSmallerThanPC, isSmallPc, isPc, isOldSmallMobile } = useMedia();
+  const { isSmallerThanPC, isSmallPc } = useMedia();
   return (
     <SectionLayout>
       <Flex
