@@ -99,15 +99,14 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
                 <Image src={`/images/home/section1/tablet.png`} alt={'text decoration image'} objectFit={'contain'} maxWidth={'450px'} />
               </Flex>
             ) : (
-              <Image
-                src={`/images/home/section1/pc.png`}
-                alt={'text decoration image'}
-                position={'relative'}
-                ml={'auto'}
-                right={['0', '0', '-75px', '-75px', '-120px']}
-                alignItems={'flex-start'}
-                objectFit={'contain'}
-              />
+              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-75px', '-75px', '-120px']} alignItems={'flex-start'}>
+                <Image
+                  src={`/images/home/section1/pc.png`}
+                  alt={'text decoration image'}
+                  objectFit={'contain'}
+                  maxWidth={['500px', '500px', '500px', '500px', '100%']}
+                />
+              </Flex>
             )}
           </>
         </Flex>
