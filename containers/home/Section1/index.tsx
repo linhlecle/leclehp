@@ -42,8 +42,9 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
               flexDir={'column'}
               justify={'flex-start'}
               mt={'80px'}
+              mr={'10px'}
               mb={['0', '20px']}
-              pt={['0px', '0px', '0px']}
+              pt={['0px', '0', '100px']}
               minWidth={['320px', '350px', '350px', '575px']}
             >
               <Image
@@ -95,16 +96,25 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
             {isSmallerThanPC ? (
               <Image src={`/images/home/section1/mobile.png`} alt={'text decoration image'} />
             ) : isSmallPc ? (
-              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-50px']} alignItems={'flex-start'}>
-                <Image src={`/images/home/section1/tablet.png`} alt={'text decoration image'} objectFit={'contain'} maxWidth={'450px'} />
+              <Flex ml={'auto'} mr={'-70px'}>
+                <Image
+                  src={`/images/home/section1/tablet.png`}
+                  alt={'text decoration image'}
+                  objectFit={'cover'}
+                  objectPosition={'right'}
+                  maxWidth={'115%'}
+                  height={'100%'}
+                />
               </Flex>
             ) : (
-              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-75px', '-75px', '-120px']} alignItems={'flex-start'}>
+              <Flex ml={'auto'}>
                 <Image
                   src={`/images/home/section1/pc.png`}
                   alt={'text decoration image'}
-                  objectFit={'contain'}
-                  maxWidth={['500px', '500px', '500px', '500px', '100%']}
+                  objectFit={'cover'}
+                  objectPosition={'right'}
+                  maxWidth={'115%'}
+                  height={'100%'}
                 />
               </Flex>
             )}
