@@ -15,7 +15,7 @@ type Section1Props = {
 function Section1({ lottieComplete, animationComplete, setAnimationComplete, alreadyLoaded }: Section1Props) {
   // const { locale } = useRouter();
   const t = useTranslations('Home');
-  const { isSmallerThanPC, isSmallPc } = useMedia();
+  const { isSmallerThanPC, isSmallPc, isSmaller600Height, isSmaller1200Height, isSmaller2000Height } = useMedia();
   return (
     <SectionLayout>
       <Flex
@@ -94,26 +94,32 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
               </Box>
             </Flex>
             {isSmallerThanPC ? (
-              <Image src={`/images/home/section1/mobile.png`} alt={'text decoration image'} />
+              <Image
+                src={`/images/home/section1/mobile.png`}
+                alt={'text decoration image'}
+                width={'100vw'}
+                maxWidth={'100vw'}
+                ml={['-16px', '-120px', '-95px']}
+              />
             ) : isSmallPc ? (
-              <Flex ml={'auto'} mr={'-70px'}>
+              <Flex ml={'auto'} mr={isSmaller600Height ? '-30px' : isSmaller1200Height ? '-50px' : isSmaller2000Height ? '-95px' : '-120px'}>
                 <Image
                   src={`/images/home/section1/tablet.png`}
                   alt={'text decoration image'}
                   objectFit={'cover'}
                   objectPosition={'right'}
-                  maxWidth={'115%'}
+                  maxWidth={'100%'}
                   height={'100%'}
                 />
               </Flex>
             ) : (
-              <Flex ml={'auto'}>
+              <Flex ml={'auto'} mr={isSmaller600Height ? '-50px' : isSmaller1200Height ? '-90px' : isSmaller2000Height ? '-150px' : '-200px'}>
                 <Image
                   src={`/images/home/section1/pc.png`}
                   alt={'text decoration image'}
                   objectFit={'cover'}
                   objectPosition={'right'}
-                  maxWidth={'115%'}
+                  maxWidth={'100%'}
                   height={'100%'}
                 />
               </Flex>
