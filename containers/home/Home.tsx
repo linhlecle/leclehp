@@ -38,7 +38,7 @@ function Home({ index, setIndex }: HomeProps) {
   const [allowSlide, setAllowSlide] = useState<boolean>(false || alreadyLoaded);
   const { isMobile, isTablet } = useMedia();
 
-  const topBottom = isMobile ? '110px' : isTablet ? '130px' : '130px';
+  const topBottom = isMobile ? '100px' : isTablet ? '130px' : '130px';
   const topRight = isMobile ? '16px' : isTablet ? '120px' : '95px';
   const contactBottom = isMobile ? '30px' : isTablet ? '50px' : '50px';
   const contactRight = isMobile ? '16px' : isTablet ? '120px' : '95px';
@@ -144,8 +144,8 @@ function Home({ index, setIndex }: HomeProps) {
           flexDir={'column'}
           align={'center'}
           justify={'center'}
-          w={'60px'}
-          h={'60px'}
+          w={['50px', '60px']}
+          h={['50px', '60px']}
           bgColor={'white'}
           borderRadius={'50%'}
           boxShadow={'0px 0px 10px rgba(26, 26, 26, 0.1)'}
@@ -155,8 +155,8 @@ function Home({ index, setIndex }: HomeProps) {
           opacity={index !== 0 ? 1 : 0}
           transition={'opacity 0.5s ease'}
         >
-          <Image src={'/icons/top.svg'} alt={'top icon'} w={'16px'} />
-          <Box textStyle={'md'} fontWeight={'700'} textAlign={'center'}>
+          <Image src={'/icons/top.svg'} alt={'top icon'} w={['14px', '16px']} />
+          <Box fontSize={['14px', '14px', '15px']} lineHeight={['26px', '26px', '27px']} fontWeight={'700'} textAlign={'center'}>
             TOP
           </Box>
         </Flex>

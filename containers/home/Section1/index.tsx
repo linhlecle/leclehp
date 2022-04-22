@@ -15,7 +15,7 @@ type Section1Props = {
 function Section1({ lottieComplete, animationComplete, setAnimationComplete, alreadyLoaded }: Section1Props) {
   // const { locale } = useRouter();
   const t = useTranslations('Home');
-  const { isSmallerThanPC, isSmallPc } = useMedia();
+  const { isSmallerThanPC, isSmallPc, isSmaller600Height, isSmaller1200Height, isSmaller2000Height } = useMedia();
   return (
     <SectionLayout>
       <Flex
@@ -42,8 +42,9 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
               flexDir={'column'}
               justify={'flex-start'}
               mt={'80px'}
+              mr={'10px'}
               mb={['0', '20px']}
-              pt={['0px', '0px', '0px']}
+              pt={['0px', '0', '100px']}
               minWidth={['320px', '350px', '350px', '575px']}
             >
               <Image
@@ -93,18 +94,33 @@ function Section1({ lottieComplete, animationComplete, setAnimationComplete, alr
               </Box>
             </Flex>
             {isSmallerThanPC ? (
-              <Image src={`/images/home/section1/mobile.png`} alt={'text decoration image'} />
+              <Image
+                src={`/images/home/section1/mobile.png`}
+                alt={'text decoration image'}
+                width={'100vw'}
+                maxWidth={'100vw'}
+                ml={['-16px', '-120px', '-95px']}
+              />
             ) : isSmallPc ? (
-              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-50px']} alignItems={'flex-start'}>
-                <Image src={`/images/home/section1/tablet.png`} alt={'text decoration image'} objectFit={'contain'} maxWidth={'450px'} />
+              <Flex ml={'auto'} mr={isSmaller600Height ? '-30px' : isSmaller1200Height ? '-50px' : isSmaller2000Height ? '-95px' : '-120px'}>
+                <Image
+                  src={`/images/home/section1/tablet.png`}
+                  alt={'text decoration image'}
+                  objectFit={'cover'}
+                  objectPosition={'right'}
+                  maxWidth={'100%'}
+                  height={'100%'}
+                />
               </Flex>
             ) : (
-              <Flex position={'relative'} ml={'auto'} right={['0', '0', '-75px', '-75px', '-120px']} alignItems={'flex-start'}>
+              <Flex ml={'auto'} mr={isSmaller600Height ? '-50px' : isSmaller1200Height ? '-90px' : isSmaller2000Height ? '-150px' : '-200px'}>
                 <Image
                   src={`/images/home/section1/pc.png`}
                   alt={'text decoration image'}
-                  objectFit={'contain'}
-                  maxWidth={['500px', '500px', '500px', '500px', '100%']}
+                  objectFit={'cover'}
+                  objectPosition={'right'}
+                  maxWidth={'100%'}
+                  height={'100%'}
                 />
               </Flex>
             )}

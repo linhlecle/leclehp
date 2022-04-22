@@ -33,7 +33,8 @@ function Section3() {
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
               minW={['300px', locale === 'en' ? '450px' : '380px', '612px', locale === 'en' ? '950px' : '612px']}
-              textStyle={locale === 'ko' ? '3xl' : ['lg', 'xl', 'xl', '3xl']}
+              width={[locale === 'ko' ? '300px' : 'auto', 'auto']}
+              textStyle={locale === 'ko' ? ['2xl', 'xl', 'xl', '3xl'] : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
             >
@@ -53,7 +54,7 @@ function Section3() {
                   borderRadius={'20px'}
                   whiteSpace={['initial', 'nowrap']}
                 >
-                  <Box textStyle={locale === 'ko' ? '4xl' : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
+                  <Box textStyle={locale === 'ko' ? ['2xl', 'xl', 'xl', '3xl'] : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
                     {t('s3Second')}
                   </Box>
                 </Badge>
