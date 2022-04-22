@@ -37,6 +37,7 @@ function Section3() {
               textStyle={locale === 'ko' ? ['2xl', 'xl', 'xl', '3xl'] : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
+              wordBreak={'keep-all'}
             >
               <Box whiteSpace={['initial', 'nowrap']}>
                 {t.rich('s3first', {
