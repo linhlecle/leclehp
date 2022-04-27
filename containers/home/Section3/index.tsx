@@ -32,12 +32,19 @@ function Section3() {
               flexDir={'column'}
               mt={['0px', '0px', '0px']}
               mr={['0px', '37px', '108px']}
-              w={['300px', '380px', '612px']}
-              textStyle={locale === 'ko' ? '3xl' : ['lg', 'xl', 'xl', '3xl']}
+              minW={['300px', locale === 'en' ? '450px' : '380px', '612px', locale === 'en' ? '950px' : '612px']}
+              width={[locale === 'ko' ? '300px' : 'auto', 'auto']}
+              textStyle={locale === 'ko' ? ['2xl', 'xl', 'xl', '3xl'] : ['lg', 'xl', 'xl', '3xl']}
               fontWeight={'500'}
               color={'black'}
+              wordBreak={'keep-all'}
             >
-              <Box wordBreak={'keep-all'}>{t('s3first')}</Box>
+              <Box whiteSpace={['initial', 'nowrap']}>
+                {t.rich('s3first', {
+                  // eslint-disable-next-line react/display-name
+                  box: (children) => <chakra.span fontWeight={'700'}>{children}</chakra.span>,
+                })}
+              </Box>
               <Flex flexDir={['column', 'row', 'row']} align={['none', 'center', 'center']}>
                 <Badge
                   w={'fit-content'}
@@ -46,14 +53,15 @@ function Section3() {
                   mr={['0px', '16.5px', '22px']}
                   border={'2px solid black'}
                   borderRadius={'20px'}
+                  whiteSpace={['initial', 'nowrap']}
                 >
-                  <Box textStyle={locale === 'ko' ? '4xl' : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
+                  <Box textStyle={locale === 'ko' ? ['2xl', 'xl', 'xl', '3xl'] : ['lg', 'xl', 'xl', '3xl']} color={'black'} fontWeight={'500'}>
                     {t('s3Second')}
                   </Box>
                 </Badge>
                 {locale === 'ko' ? isSmallerThanTablet ? null : <Box>모든</Box> : null}
               </Flex>
-              <Box wordBreak={'keep-all'}>
+              <Box whiteSpace={['initial', 'nowrap']}>
                 {t.rich('s33', {
                   // eslint-disable-next-line react/display-name
                   span: (children) => (!isSmallerThanTablet ? null : <chakra.span>{children}</chakra.span>),
@@ -63,7 +71,7 @@ function Section3() {
           </Flex>
         </Flex>
         {isMobile ? (
-          <Flex flexDir={'column'} w={'100vw'} h={'300px'} mb={'20px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={'245px'} mb={'83px'} gap={'15px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={7} datas={MARQUEE} />
             </InfiniteSlider>
@@ -78,7 +86,7 @@ function Section3() {
             </InfiniteSlider>
           </Flex>
         ) : (
-          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'20px'} gap={'20px'}>
+          <Flex flexDir={'column'} w={'100vw'} h={['0px', '220px', '280px']} mb={'83px'} gap={'20px'}>
             <InfiniteSlider flow={'right'} duration={20000}>
               <SliderItem startItem={0} endItem={9} datas={MARQUEE} />
             </InfiniteSlider>

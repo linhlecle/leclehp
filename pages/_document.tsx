@@ -74,6 +74,7 @@ class MyDocument extends Document {
           <meta name="format-detection" content="telephone=no, address=no, email=no" />
           <meta name="google-site-verification" content="0iB46ZizuTuKa-5K1Ko8eBJ29VM7fvkLT2Mkc49biTk" />
           <meta httpEquiv="content-security-policy" content="upgrade-insecure-requests" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
 

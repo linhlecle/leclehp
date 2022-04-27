@@ -37,7 +37,7 @@ function Section5() {
                     <Flex align={'center'} justify={'center'} w={['180px', '180px', '296px']} h={'130px'}>
                       <Image src={src} alt={`strength${index}`} w={'50px'} h={'50px'} />
                     </Flex>
-                    <Box mt={['20px', '20px', '36px']} textStyle={locale === 'ko' ? 'xl' : 'lg'} fontWeight={'700'} color={'black'}>
+                    <Box mt={['20px', '20px', '36px']} textStyle={locale === 'ko' ? 'xl' : 'lg'} fontWeight={'700'} color={'black'} textAlign={'center'}>
                       {title}
                     </Box>
                     <Box mt={['15px', '15px', '30px']} textStyle={'md'} fontWeight={'400'} textAlign={'center'} w={textW} h={textH} wordBreak={'keep-all'}>

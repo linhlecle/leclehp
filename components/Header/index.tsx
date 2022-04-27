@@ -53,7 +53,7 @@ function Header({ activeIndex, animationComplete, alreadyLoaded }: HeaderProps) 
       w={'100%'}
       minW={'100vw'}
       h={'fit-content'}
-      minH={'80px'}
+      minH={'60px'}
       bgColor={handleHeaderBgColor()}
       position={'fixed'}
       top={0}

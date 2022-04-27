@@ -19,7 +19,7 @@ function MainHeader({ isHover, setIsHover, handleHeaderTextColor, activeIndex, a
   // const router = useRouter();
   const { route, push, pathname, locale } = useRouter();
   // const otherLocale = locales?.find((cur) => cur !== locale);
-  const { isSmallerThanPC } = useMedia();
+  const { isSmallerThanPC, isMobile } = useMedia();
   let colorKo = 'white';
   let colorEn = 'white';
 
@@ -42,17 +42,24 @@ function MainHeader({ isHover, setIsHover, handleHeaderTextColor, activeIndex, a
   return (
     <Flex flexDir={'row'} align={'center'} justify={'space-between'} w={'100%'} h={'fit-content'} overflow={'hidden'}>
       {pathname === '/' ? (
-        <Flex as="h1" align={'center'} w={'100%'} minW={'fit-content'} minH={'80px'}>
+        <Flex as="h1" align={'center'} w={'100%'} minW={'fit-content'} minH={'60px'}>
           <Image
             src={animationComplete || alreadyLoaded ? `/images/lecle_${handleHeaderTextColor()}.svg` : '/images/lecle_white.svg'}
             alt={'LECLE'}
             cursor="pointer"
             onClick={() => push('/')}
+            height={isMobile ? '22px' : '26px'}
           />
         </Flex>
       ) : (
-        <Flex as="h1" align={'center'} w={'100%'} minW={'fit-content'} minH={'80px'}>
-          <Image src={`/images/lecle_${handleHeaderTextColor()}.svg`} alt={'LECLE'} cursor="pointer" onClick={() => push('/')} />
+        <Flex as="h1" align={'center'} w={'100%'} minW={'fit-content'} minH={'60px'}>
+          <Image
+            src={`/images/lecle_${handleHeaderTextColor()}.svg`}
+            alt={'LECLE'}
+            height={isMobile ? '22px' : '26px'}
+            cursor="pointer"
+            onClick={() => push('/')}
+          />
         </Flex>
       )}
       {isSmallerThanPC ? (
