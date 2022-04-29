@@ -8,19 +8,23 @@ type ContactType = Type[];
 export const contactType1 = (t: any) => [
   {
     id: 1,
-    value: t('q1Btn1'),
+    value: '프로젝트 요청',
+    lang: t('q1Btn1'),
   },
   {
     id: 2,
-    value: t('q1Btn2'),
+    value: '사업제휴',
+    lang: t('q1Btn2'),
   },
   {
     id: 3,
-    value: t('q1Btn3'),
+    value: '기타문의',
+    lang: t('q1Btn3'),
   },
   {
     id: 4,
-    value: t('q1Btn4'),
+    value: '아직 잘 모르겠어요',
+    lang: t('q1Btn4'),
   },
 ];
 

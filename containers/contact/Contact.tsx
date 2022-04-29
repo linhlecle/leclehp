@@ -65,7 +65,7 @@ function Contact() {
   const detailRef = useRef<any>(null);
 
   const onClickType1 = (value: string) => {
-    if (value === t('q1Btn4')) {
+    if (value === '아직 잘 모르겠어요') {
       setPrevent(true);
       detailRef.current.focus({ preventScroll: false });
       window.scrollTo({
@@ -321,9 +321,9 @@ function Contact() {
         <Flex flexDir={'column'} px={['16px', '120px', '100px']} w={'100%'} maxW={['100%', '100%', 'calc(100% - 200px)']}>
           <ButtonGroup title={t('q1')}>
             <Flex flexDir={'row'} flexWrap={'wrap'} mt={'10px'}>
-              {contactType1(t).map(({ value }, index, arr) => {
+              {contactType1(t).map(({ value, lang }, index, arr) => {
                 const active = type1 === arr[index].value;
-                return <ButtonItem key={index} value={value} onClick={() => onClickType1(value)} active={active} />;
+                return <ButtonItem key={index} value={lang} onClick={() => onClickType1(value)} active={active} />;
               })}
             </Flex>
           </ButtonGroup>
