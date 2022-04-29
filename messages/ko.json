@@ -147,7 +147,14 @@
     "fileSizeExceed": "파일 크기가 초과되었습니다",
     "inquirySent": "개발문의가 전송되었습니다",
     "marketingMedia": "어떤 마케팅 매체를 통해 방문하셨나요?",
-    "file": "{name} 외 {length}개"
+    "file": "{name} 외 {length}개",
+    "checkerInquiryType": "문의 유형을 선택하세요",
+    "checkerContactInformation": "문의 정보를 형식에 맞게 입력하세요.",
+    "checkerSelectInquiry": "문의 내용을 선택하세요",
+    "checkerProjectType": "프로젝트 유형을 선택하세요",
+    "checkerFunnel": "유입 경로를 선택하세요",
+    "checkerMarketing": "마케팅 매체를 입력하세요",
+    "checkerPolicy": "개인정보보호정책에 동의하세요"
   },
   "Navigation": {
     "aboutUs": "회사소개",

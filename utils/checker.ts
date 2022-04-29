@@ -17,6 +17,7 @@ type CheckerType = {
   funnel?: string | null;
   funnel2?: string;
   policy?: boolean;
+  t?: any;
 };
 
 export const checker = ({
@@ -32,18 +33,19 @@ export const checker = ({
   funnel,
   funnel2,
   policy,
+  t,
 }: CheckerType): string => {
   if (!type1) {
-    return '문의 유형을 선택하세요';
+    return t('checkerInquiryType');
   } else if (
-    type1 === '아직 잘 모르겠어요' &&
+    type1 === t('q1Btn4') &&
     (companyName === '' || companyField === '' || customerPositions === '' || customerName === '' || !emailRegExp.test(email) || !phoneRegExp.test(phone))
   ) {
-    return '문의 정보를 형식에 맞게 입력하세요.';
-  } else if (type1 !== '아직 잘 모르겠어요' && type2?.length === 0) {
-    return '문의 내용을 선택하세요';
-  } else if (type1 !== '아직 잘 모르겠어요' && type2?.length !== 0 && type3?.length === 0) {
-    return '프로젝트 유형을 선택하세요';
+    return t('checkerContactInformation');
+  } else if (type1 !== t('q1Btn4') && type2?.length === 0) {
+    return t('checkerSelectInquiry');
+  } else if (type1 !== t('q1Btn4') && type2?.length !== 0 && type3?.length === 0) {
+    return t('checkerProjectType');
   } else if (
     companyName === '' ||
     companyField === '' ||
@@ -52,13 +54,13 @@ export const checker = ({
     !emailRegExp.test(email) ||
     !phoneRegExp.test(phone)
   ) {
-    return '문의 정보를 형식에 맞게 입력하세요';
+    return t('checkerContactInformation');
   } else if (!funnel) {
-    return '유입 경로를 선택하세요';
-  } else if (funnel === '마케팅 매체' && !funnel2) {
-    return '마케팅 매체를 입력하세요';
+    return t('checkerFunnel');
+  } else if (funnel === t('q8Btn7') && !funnel2) {
+    return t('checkerMarketing');
   } else if (!policy) {
-    return '개인정보보호정책에 동의하세요';
+    return t('checkerPolicy');
   }
   return '';
 };
