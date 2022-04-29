@@ -147,7 +147,14 @@
     "fileSizeExceed": "File size exceeded",
     "inquirySent": "A development inquiry has been sent",
     "marketingMedia": "What marketing media did you visit?",
-    "file": "{name} and {length} others"
+    "file": "{name} and {length} others",
+    "checkerInquiryType": "Please select the Type of Inquiry",
+    "checkerContactInformation": "Please enter Information in the correct format",
+    "checkerSelectInquiry": "Please select at least one Category",
+    "checkerProjectType": "Please select at least one Project type",
+    "checkerFunnel": "Please specify how did you hear about us",
+    "checkerMarketing": "Please specify a valid Marketing Media",
+    "checkerPolicy": "Please agree to the Privacy Policy"
   },
   "Navigation": {
     "aboutUs": "About Us",
