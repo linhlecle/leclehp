@@ -38,13 +38,13 @@ export const checker = ({
   if (!type1) {
     return t('checkerInquiryType');
   } else if (
-    type1 === t('q1Btn4') &&
+    type1 === '아직 잘 모르겠어요' &&
     (companyName === '' || companyField === '' || customerPositions === '' || customerName === '' || !emailRegExp.test(email) || !phoneRegExp.test(phone))
   ) {
     return t('checkerContactInformation');
-  } else if (type1 !== t('q1Btn4') && type2?.length === 0) {
+  } else if (type1 !== '아직 잘 모르겠어요' && type2?.length === 0) {
     return t('checkerSelectInquiry');
-  } else if (type1 !== t('q1Btn4') && type2?.length !== 0 && type3?.length === 0) {
+  } else if (type1 !== '아직 잘 모르겠어요' && type2?.length !== 0 && type3?.length === 0) {
     return t('checkerProjectType');
   } else if (
     companyName === '' ||
