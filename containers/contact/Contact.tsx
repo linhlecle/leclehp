@@ -61,6 +61,7 @@ function Contact() {
   const [policy, setPolicy] = useState<boolean>(false);
   const [confirmed, setConfirmed] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const detailRef = useRef<any>(null);
 
@@ -158,6 +159,7 @@ function Contact() {
       setMessage(checker(data));
       setTimeout(() => setConfirmed(false), 2000);
     } else {
+      setLoading(true);
       try {
         if (files) {
           const datas = [...files].map(async (file) => {
@@ -300,6 +302,7 @@ function Contact() {
         );
         setTimeout(() => setConfirmed(false), 2000);
       }
+      setLoading(false);
     }
   };
 
@@ -426,6 +429,8 @@ function Contact() {
               _hover={{ bg: 'gray.800' }}
               _active={{ bg: 'gray.700' }}
               onClick={onSubmit}
+              isLoading={loading}
+              loadingText={t('submit')}
             >
               <Box color={'white'} textStyle={'md'} fontWeight={'700'}>
                 {t('submit')}
