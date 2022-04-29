@@ -151,142 +151,155 @@ function Contact() {
       funnel,
       funnel2,
       policy,
+      t,
     };
     if (checker(data)) {
       setConfirmed(true);
       setMessage(checker(data));
       setTimeout(() => setConfirmed(false), 2000);
     } else {
-      if (files) {
-        const datas = [...files].map(async (file) => {
-          const formData = new FormData();
-          formData.append('file', file);
-          const response = await fileUpload(formData);
-          const { id, file: url } = response;
-          return { id, url };
-        });
-        const result = await Promise.all(datas);
-        const ids = result.map((v) => v.id);
-        const urls = result.map((v) => v.url);
-        await mutateAsync({
-          type1,
-          contactDetailSet: data.type2,
-          projectTypeSet: data.type3,
-          detail,
-          startDate: formatDateToString(startDate),
-          endDate: formatDateToString(endDate),
-          budget,
-          companyName,
-          companyField,
-          customerPositions,
-          customerName,
-          email,
-          phone,
-          funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
-          files: ids,
-        });
-        // md
-        await gitUpload({
-          type1,
-          email,
-          detail: convertMd({
+      try {
+        if (files) {
+          const datas = [...files].map(async (file) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            const response = await fileUpload(formData);
+            const { id, file: url } = response;
+            return { id, url };
+          });
+          const result = await Promise.all(datas);
+          const ids = result.map((v) => v.id);
+          const urls = result.map((v) => v.url);
+          await mutateAsync({
             type1,
-            type2: type2
-              .filter((type) => type.checked)
-              .map((type) => type.name)
-              .toString(),
-            type3: type3
-              .filter((type) => type.checked)
-              .map((type) => type.name)
-              .toString(),
+            contactDetailSet: data.type2,
+            projectTypeSet: data.type3,
             detail,
             startDate: formatDateToString(startDate),
             endDate: formatDateToString(endDate),
             budget,
             companyName,
-            customerName,
-            phone,
             companyField,
             customerPositions,
+            customerName,
             email,
-            funnel,
-            funnel2,
-            file: urls.toString(),
-          }),
-        });
-      } else {
-        // no file
-        await mutateAsync({
-          type1,
-          contactDetailSet: data.type2,
-          projectTypeSet: data.type3,
-          detail,
-          startDate: formatDateToString(startDate),
-          endDate: formatDateToString(endDate),
-          budget,
-          companyName,
-          companyField,
-          customerPositions,
-          customerName,
-          email,
-          phone,
-          funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
-          files: [],
-        });
-        // md
-        await gitUpload({
-          type1,
-          email,
-          detail: convertMd({
+            phone,
+            funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
+            files: ids,
+          });
+          // md
+          await gitUpload({
             type1,
-            type2: type2
-              .filter((type) => type.checked)
-              .map((type) => type.name)
-              .toString(),
-            type3: type3
-              .filter((type) => type.checked)
-              .map((type) => type.name)
-              .toString(),
+            email,
+            detail: convertMd({
+              type1,
+              type2: type2
+                .filter((type) => type.checked)
+                .map((type) => type.name)
+                .toString(),
+              type3: type3
+                .filter((type) => type.checked)
+                .map((type) => type.name)
+                .toString(),
+              detail,
+              startDate: formatDateToString(startDate),
+              endDate: formatDateToString(endDate),
+              budget,
+              companyName,
+              customerName,
+              phone,
+              companyField,
+              customerPositions,
+              email,
+              funnel,
+              funnel2,
+              file: urls.toString(),
+            }),
+          });
+        } else {
+          // no file
+          await mutateAsync({
+            type1,
+            contactDetailSet: data.type2,
+            projectTypeSet: data.type3,
             detail,
             startDate: formatDateToString(startDate),
             endDate: formatDateToString(endDate),
             budget,
             companyName,
-            customerName,
-            phone,
             companyField,
             customerPositions,
+            customerName,
             email,
-            funnel,
-            funnel2,
-          }),
-        });
+            phone,
+            funnel: `${funnel}${funnel === t('q8Btn7') ? '-' + funnel2 : ''}`,
+            files: [],
+          });
+          // md
+          await gitUpload({
+            type1,
+            email,
+            detail: convertMd({
+              type1,
+              type2: type2
+                .filter((type) => type.checked)
+                .map((type) => type.name)
+                .toString(),
+              type3: type3
+                .filter((type) => type.checked)
+                .map((type) => type.name)
+                .toString(),
+              detail,
+              startDate: formatDateToString(startDate),
+              endDate: formatDateToString(endDate),
+              budget,
+              companyName,
+              customerName,
+              phone,
+              companyField,
+              customerPositions,
+              email,
+              funnel,
+              funnel2,
+            }),
+          });
+        }
+        setConfirmed(true);
+        setMessage(t('inquirySent'));
+        setTimeout(() => setConfirmed(false), 2000);
+        // form reset
+        setType1('');
+        setPrevent(false);
+        setType2(type2?.map((type) => ({ id: type.id, checked: false, name: type.name })));
+        setType3(type3?.map((type) => ({ id: type.id, checked: false, name: type.name })));
+        setDetail('');
+        setFiles(null);
+        setStartDate(new Date());
+        setEndDate(new Date());
+        setBudget(t('q6Text1'));
+        setChecked(false);
+        setActive(0);
+        setCompanyName('');
+        setCompanyField('');
+        setCustomerName('');
+        setCustomerPositions('');
+        setEmail('');
+        setPhone('');
+        setFunnel('');
+        setIsOpenByMarketingMedia(false);
+        setFunnel2('');
+        setPolicy(false);
+      } catch (error: any) {
+        const errorData = error?.response?.data || {};
+        const errorMessage = Object.values(errorData).flat().join(' \n ');
+        setConfirmed(true);
+        setMessage(
+          errorMessage.indexOf('이 유효하지 않은 선택(choice)입니다.') && locale === 'en'
+            ? `${errorMessage.slice(0, errorMessage.lastIndexOf('"') + 1)} is an invalid choice.`
+            : errorMessage,
+        );
+        setTimeout(() => setConfirmed(false), 2000);
       }
-      setConfirmed(true);
-      setMessage(t('inquirySent'));
-      setTimeout(() => setConfirmed(false), 2000);
-      // form reset
-      setType1('');
-      setPrevent(false);
-      setType2(type2?.map((type) => ({ id: type.id, checked: false, name: type.name })));
-      setType3(type3?.map((type) => ({ id: type.id, checked: false, name: type.name })));
-      setDetail('');
-      setFiles(null);
-      setStartDate(new Date());
-      setEndDate(new Date());
-      setBudget(t('q6Text1'));
-      setChecked(false);
-      setActive(0);
-      setCompanyName('');
-      setCompanyField('');
-      setCustomerName('');
-      setCustomerPositions('');
-      setEmail('');
-      setPhone('');
-      setFunnel('');
-      setIsOpenByMarketingMedia(false);
-      setFunnel2('');
-      setPolicy(false);
     }
   };
 

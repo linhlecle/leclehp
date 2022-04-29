@@ -6,9 +6,11 @@ import SliderItem from './_fragments/SliderItem';
 import api from 'apis/Hr/GET';
 import { dateToUpdated } from 'utils/formatDateToString';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 function Section2() {
   const t = useTranslations('Home');
+  const { locale } = useRouter();
   const { data } = useQuery<any>(['hr'], api.getHr);
   const lastUpdated = dateToUpdated(data?.[data?.length - 1]?.updated);
   const totalCount = data?.find((hr: any) => hr.category === 'TOTAL').num;
@@ -41,7 +43,7 @@ function Section2() {
               {t('section2Description')}
             </Box>
             <Box textStyle={'md'} color={'gray.700'} fontWeight={'400'} mb={['100px', '55px', '53px']}>
-              {`${lastUpdated} 기준`}
+              {locale === 'ko' ? `${lastUpdated} 기준` : lastUpdated}
             </Box>
           </Flex>
           <Box
