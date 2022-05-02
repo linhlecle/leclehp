@@ -35,6 +35,7 @@ class MyDocument extends Document {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '${GOOGLE_ANALYTICS_ID}');
+        gtag('config', 'UA-221436239-1');
       `,
     };
   }
@@ -54,6 +55,10 @@ class MyDocument extends Document {
       fbq('track', 'PageView');
       `,
     };
+  }
+
+  fbNoscript() {
+    return `<img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=988448221810690&ev=PageView&noscript=1" />`;
   }
 
   render() {
@@ -100,9 +105,7 @@ class MyDocument extends Document {
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
           <script dangerouslySetInnerHTML={this.setGoogleAnalytics()} />
           <script dangerouslySetInnerHTML={this.setMetaPixelCode()} />
-          <noscript>
-            <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=988448221810690&ev=PageView&noscript=1" />
-          </noscript>
+          <noscript dangerouslySetInnerHTML={{ __html: this.fbNoscript() }}></noscript>
         </Head>
         <body>
           <ColorModeScript initialColorMode={config.initialColorMode} />
