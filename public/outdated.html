@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Browswer not supported</title>
+  <title>다른 브라우저를 사용해보세요.</title>
   <style>
     *,
     *::before,
@@ -64,15 +64,28 @@
       margin-bottom: 5px;
     }
   </style>
+
 </head>
 
 <body>
   <div class="container">
-    <img src="/images/exclamation-mark.png" alt="Browswer not supported">
-    <h2>Browswer not supported</h2>
-    <p>Please switch to a supported browser to continue using lecle/co.kr/en.</p>
-    <p>Supported browsers are Google Chrome, Firefox, Safari, and Edge.</p>
+    <img id="outdated-img" src="/images/exclamation-mark.png" alt="다른 브라우저를 사용해보세요.">
+    <h2 id="outdated-header">다른 브라우저를 사용해보세요.</h2>
+    <p id="outdated-p">아쉽지만 현재 레클은 익스플로러를 지원하지 않습니다.</p>
+    <p id="outdated-p1">Chrome, Firefox, Safari, Edge 중 원하는 브라우저를 설치 후 이용해주시길 바랍니다.</p>
   </div>
+  <script>
+    var currentLang = window.navigator.userLanguage || window.navigator.language;
+    var eng = currentLang === 'en' || currentLang.indexOf('en-') > -1;
+    if (eng) {
+      document.title = 'Browswer not supported';
+      document.getElementById('outdated-img').alt = 'Browswer not supported';
+      document.getElementById('outdated-header').innerText = 'Browswer not supported';
+      document.getElementById('outdated-p').innerText = 'Please switch to a supported browser to continue using lecle/co.kr/en.';
+      document.getElementById('outdated-p1').innerText = 'Supported browsers are Google Chrome, Firefox, Safari, and Edge.';
+    }
+
+  </script>
 </body>
 
 </html>
