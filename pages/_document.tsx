@@ -16,17 +16,17 @@ class MyDocument extends Document {
     return { ...initialProps };
   }
 
-  redirectIEtoEdge() {
-    return {
-      __html: `
-      if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-        window.location = 'microsoft-edge:' + window.location;
-        setTimeout(function() {
-          window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
-        }, 1);
-      }`,
-    };
-  }
+  // redirectIEtoEdge() {
+  //   return {
+  //     __html: `
+  //     if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+  //       window.location = 'microsoft-edge:' + window.location;
+  //       setTimeout(function() {
+  //         window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
+  //       }, 1);
+  //     }`,
+  //   };
+  // }
 
   setGoogleAnalytics() {
     return {
@@ -65,7 +65,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script dangerouslySetInnerHTML={this.redirectIEtoEdge()} />
+          {/* <script dangerouslySetInnerHTML={this.redirectIEtoEdge()} /> */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
@@ -102,6 +102,7 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
 
           {/* Global site tag (gtag.js) - Google Analytics */}
+          <script async src="/scripts/checkBrowser.js" />
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
           <script dangerouslySetInnerHTML={this.setGoogleAnalytics()} />
           <script dangerouslySetInnerHTML={this.setMetaPixelCode()} />
