@@ -174,5 +174,10 @@
     "outsourcing": "아웃소싱",
     "development": "개발문의",
     "inquiry": "문의하기"
+  },
+  "IE": {
+    "notSupport": "다른 브라우저를 사용해보세요.",
+    "description": "아쉽지만 현재 레클은 익스플로러를 지원하지 않습니다.",
+    "description1": "Chrome, Firefox, Safari, Edge 중 원하는 브라우저를 설치 후 이용해주시길 바랍니다."
   }
 }

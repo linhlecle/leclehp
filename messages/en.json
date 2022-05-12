@@ -174,5 +174,10 @@
     "outsourcing": "Outsourcing",
     "development": "Contact us",
     "inquiry": "Inquiry"
+  },
+  "IE": {
+    "notSupport": "Browser not supported",
+    "description": "Please switch to a supported browser to continue using lecle/co.kr/en.",
+    "description1": "Supported browsers are Google Chrome, Firefox, Safari, and Edge."
   }
 }
